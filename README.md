@@ -1,1 +1,1 @@
-# itmo-frontend
+# itmo-web
