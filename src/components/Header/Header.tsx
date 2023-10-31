@@ -6,17 +6,21 @@ const Header = (): React.JSX.Element => {
   return (
     <header className="header">
       <div className="header__logo">
-        <Link to="/posts">
-          <span className="nav__link">DEV</span>
+        <Link className="link" to="/">
+          <span>DEV</span>
         </Link>
       </div>
-      <div className="header__nav">
-        <nav className="nav">
-          <Link to="/posts">
-            <span className="nav__link">Posts</span>
-          </Link>
-        </nav>
-      </div>
+      <nav className="header__nav nav">
+        <Link className="link nav__link" to="/posts">
+          <span>Posts</span>
+        </Link>
+        <Link className="link nav__link" to="/contacts">
+          <span>Contacts</span>
+        </Link>
+        <Link className="link nav__link" to="/login">
+          <span>Login</span>
+        </Link>
+      </nav>
     </header>
   );
 };
