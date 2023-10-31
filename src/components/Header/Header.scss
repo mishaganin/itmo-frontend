@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  padding: 20px;
+
+  .header__logo {
+    font-size: 30px;
+  }
+
+  .link {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .nav {
+    display: flex;
+    gap: 20px;
+
+    .nav__link {
+      &:hover {
+        color: #a4a4a4;
+      }
+    }
+  }
+}

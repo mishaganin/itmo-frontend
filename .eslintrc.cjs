@@ -10,12 +10,21 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', 'typescript-eslint'],
+  parserOptions: {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": ["./tsconfig.json"],
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  plugins: ['react-refresh', '@typescript-eslint'],
   rules: {
     "import/prefer-default-export": "off",
     "import/no-named-as-default": 0,
     "prefer-object-spread": "off",
     "react/jsx-props-no-spreading": "off",
+    "react/react-in-jsx-scope": "off",
     "max-len": [2, 100],
     "max-params": [2, 3],
     "object-curly-newline": [
@@ -33,12 +42,6 @@ module.exports = {
       "always",
       {
         "exceptAfterSingleLine": true
-      }
-    ],
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [".jsx", ".tsx"]
       }
     ],
     "indent": ["error", 2, { "SwitchCase": 1 }],
@@ -75,14 +78,22 @@ module.exports = {
         ],
         "peerDependencies": true
       }
-    ]
-  },
-  parserOpts: {
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "project": ["./tsconfig.json"],
-    "ecmaFeatures": {
-      "jsx": true
-    }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "always",
+        "jsx": "always",
+        "ts": "always",
+        "tsx": "always"
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".ts", "tsx"]
+      }
+    ],
   },
 }
