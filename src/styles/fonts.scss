@@ -1,7 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter&family=Oswald:wght@700&family=Pixelify+Sans&family=Raleway&display=swap');
+
 @font-face {
-  font-family: "FoundersGrotesk";
-  src: local("FoundersGrotesk"),
-    url("../assets/fonts/FoundersGrotesk-Bold.ttf") format("ttf");
+  font-family: "Founders Grotesk";
+  src: local("Founders Grotesk"),
+    url("../assets/fonts/Founders Grotesk Bold 700.otf") format("otf");
+}
+
+@font-face {
+  font-family: "Founders Grotesk Bold";
+  src: local("Founders Grotesk Bold"),
+  url("../assets/fonts/FoundersGrotesk-Bold.otf") format("otf");
+}
+
+@font-face {
+  font-family: "Founders Grotesk Semibold";
+  src: local("Founders Grotesk Semibold"),
+  url("../assets/fonts/Test Founders Grotesk SmB 600.otf") format("otf");
 }
 
 @font-face {
