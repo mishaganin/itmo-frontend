@@ -1,0 +1,33 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border: 0.5px solid #b2b2b2;
+  border-radius: 3px;
+  min-width: 300px;
+  padding: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  color: #c8c8c8;
+  cursor: pointer;
+
+  &:hover {
+    //padding: 5px;
+    //box-shadow: 1px 1px 20px #f5da47;
+  }
+
+  .post__image-wrapper {
+    height: 150px;
+    padding: 0 40px;
+
+    .post__image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .post__title {
+    color: #ffffff;
+  }
+}
