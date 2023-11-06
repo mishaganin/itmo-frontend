@@ -24,6 +24,7 @@
   }
 
   .link {
+    position: relative;
     color: #ffffff;
     text-decoration: none;
   }
@@ -45,6 +46,26 @@
 
         &:hover {
           color: #a4a4a4;
+
+          &::before {
+            content: "";
+            position: absolute;
+            bottom: -4px; /* Adjust the negative value to control the padding */
+            left: 0;
+            width: 100%;
+            border-bottom: 2px solid rgba(245, 218, 71, 0.66);
+          }
+        }
+
+        &.active {
+          &::before {
+            content: "";
+            position: absolute;
+            bottom: -4px; /* Adjust the negative value to control the padding */
+            left: 0;
+            width: 100%;
+            border-bottom: 2px solid #f5da47;
+          }
         }
       }
     }
