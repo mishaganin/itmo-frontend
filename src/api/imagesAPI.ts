@@ -8,6 +8,7 @@ export const ImagesAPI = {
       params: {
         query: 'coding',
         orientation: 'landscape',
+        per_page: 20,
       },
     });
 

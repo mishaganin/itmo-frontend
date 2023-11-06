@@ -8,7 +8,7 @@ export const PostsAPI = {
     const images = await ImagesAPI.getAll();
     return posts.map((post: IPost, idx: number): IPost => ({
       ...post,
-      image: images[idx].urls.raw,
+      image: images[idx].urls.small,
     }));
   },
 };
