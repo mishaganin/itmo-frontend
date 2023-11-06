@@ -7,7 +7,7 @@ const Post = ({ id, title, content, image, date }: IPost): React.JSX.Element => 
   <div className="post">
     <div className="post__image-wrapper">
       <img
-        src={img}
+        src={image}
         alt="post"
         className="post__image"
       />
