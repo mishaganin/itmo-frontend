@@ -5,6 +5,7 @@ import './PostsPage.scss';
 import useMounted from '../../hooks/useMounted.ts';
 // import { postsAPI } from '../../__fakeAPI__/postsAPI.ts';
 import { PostsAPI } from '../../api/postsAPI.ts';
+import Spinner from '../../components/Spinner/Spinner.tsx';
 
 const PostsPage = (): React.JSX.Element => {
   const mounted = useMounted();
@@ -30,24 +31,23 @@ const PostsPage = (): React.JSX.Element => {
   }, [getPosts]);
 
   return (
-    <>
-      {isLoading
-        ? <div>Loading</div>
-        : (
-          <div className="posts">
-            {posts.map((post) => (
-              <Post
-                key={post.id}
-                id={post.id}
-                title={post.title}
-                content={post.content}
-                image={post.image}
-                date={post.date}
-              />
-            ))}
-          </div>
-        )}
-    </>
+    <div className="posts">
+      <Spinner enabled={isLoading} className="posts__spinner" />
+      {!isLoading && (
+        <div className="posts__list">
+          {posts.map((post) => (
+            <Post
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              content={post.content}
+              image={post.image}
+              date={post.date}
+            />
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
