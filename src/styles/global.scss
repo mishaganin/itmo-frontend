@@ -1,5 +1,12 @@
 @import './fonts.scss';
 
+* {
+  &::selection {
+    color: black;
+    background: #f5da47;
+  }
+}
+
 html, body {
   margin: 0;
   padding: 0;
