@@ -1,0 +1,20 @@
+.footer {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 100px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 0;
+    border-top: 0.5px solid #ffffff;
+
+    .footer__link {
+      color: #c8c8c8;
+    }
+  }
+}

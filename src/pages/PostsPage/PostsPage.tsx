@@ -3,9 +3,9 @@ import Post from '../../components/Post/Post.tsx';
 import { IPost } from '../../types/types.ts';
 import './PostsPage.scss';
 import useMounted from '../../hooks/useMounted.ts';
-// import { postsAPI } from '../../__fakeAPI__/postsAPI.ts';
 import { PostsAPI } from '../../api/postsAPI.ts';
 import Spinner from '../../components/Spinner/Spinner.tsx';
+import Footer from '../../components/Footer/Footer.tsx';
 
 const PostsPage = (): React.JSX.Element => {
   const mounted = useMounted();
@@ -48,6 +48,7 @@ const PostsPage = (): React.JSX.Element => {
           ))}
         </div>
       )}
+      <Footer />
     </div>
   );
 };
