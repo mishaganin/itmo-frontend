@@ -42,6 +42,7 @@ const PostsPage = (): React.JSX.Element => {
               title={post.title}
               content={post.content}
               image={post.image}
+              author={post.author}
               date={post.date}
             />
           ))}

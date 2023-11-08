@@ -29,5 +29,28 @@
 
   .post__title {
     color: #ffffff;
+    font-size: 25px;
+  }
+
+  .post__content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+            line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .post__info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 20px;
+
+    .post__author {
+      .post__author-name {
+
+      }
+    }
   }
 }
