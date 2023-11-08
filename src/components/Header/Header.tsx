@@ -22,7 +22,7 @@ const Header = (): React.JSX.Element => {
   return (
     <header className="header">
       <div className="header__logo logo">
-        <Link className="link" to="/">
+        <Link className="logo__link" to="/">
           <span className="logo__text">DevShare</span>
         </Link>
       </div>
