@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import showDate from '../../utils/showDate.ts';
-import { IPost } from '../../types/types.ts';
+import React, { MouseEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import showDate from '@/utils/showDate.ts';
+import { IPost } from '@/types/types.ts';
 import './Post.scss';
 
 const Post = ({ id, title, content, image, author, date }: IPost): React.JSX.Element => {
@@ -9,6 +9,11 @@ const Post = ({ id, title, content, image, author, date }: IPost): React.JSX.Ele
 
   const handlePostClick = () => {
     navigate(`/posts/${id}`);
+  };
+
+  const handleAuthorClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    navigate(`/accounts/${id}`);
   };
 
   return (
@@ -34,9 +39,12 @@ const Post = ({ id, title, content, image, author, date }: IPost): React.JSX.Ele
         <div className="post__author">
           by
           {' '}
-          <Link className="post__link link" to={`/accounts/${id}`}>
+          <span
+            className="post__link link"
+            onClick={handleAuthorClick}
+          >
             {author}
-          </Link>
+          </span>
         </div>
         <div className="post__date">
           {showDate(date)}

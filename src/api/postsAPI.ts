@@ -1,6 +1,6 @@
-import { postsAPI } from '../__fakeAPI__/postsAPI.ts';
 import { ImagesAPI } from './imagesAPI.ts';
-import { IPost } from '../types/types.ts';
+import { postsAPI } from '@/__fakeAPI__/postsAPI.ts';
+import { IPost } from '@/types/types.ts';
 
 export const PostsAPI = {
   getAll: async () => {

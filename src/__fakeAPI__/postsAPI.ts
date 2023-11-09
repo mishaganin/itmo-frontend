@@ -1,4 +1,4 @@
-import { IPost } from '../types/types.ts';
+import { IPost } from '@/types/types.ts';
 
 class PostsAPI {
   getPosts(): Promise<IPost[]> {

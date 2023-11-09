@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Post from '../../components/Post/Post.tsx';
-import { IPost } from '../../types/types.ts';
+import useMounted from '@/hooks/useMounted.ts';
+import { IPost } from '@/types/types.ts';
+import { PostsAPI } from '@/api/postsAPI.ts';
+import Post from '@/components/Post/Post.tsx';
+import Spinner from '@/components/Spinner/Spinner.tsx';
+import Footer from '@/components/Footer/Footer.tsx';
 import './PostsPage.scss';
-import useMounted from '../../hooks/useMounted.ts';
-import { PostsAPI } from '../../api/postsAPI.ts';
-import Spinner from '../../components/Spinner/Spinner.tsx';
-import Footer from '../../components/Footer/Footer.tsx';
 
 const PostsPage = (): React.JSX.Element => {
   const mounted = useMounted();

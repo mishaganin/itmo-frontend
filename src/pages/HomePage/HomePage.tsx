@@ -1,5 +1,5 @@
 import React from 'react';
-import image from '../../assets/img/coding.png';
+import image from '@/assets/img/coding.png';
 import './HomePage.scss';
 
 const HomePage = (): React.JSX.Element => (
