@@ -12,11 +12,11 @@ const ErrorBoundary = () => {
     let errorMessage = 'Sorry.. there was an error';
     if (isRouteErrorResponse(error)) {
       if (error.status === HttpStatusCode.NOT_FOUND) {
-        errorMessage = 'This page doesn\'t exist!';
+        errorMessage = "This page doesn't exist!";
       }
 
       if (error.status === HttpStatusCode.UNAUTHORIZED) {
-        errorMessage = 'You aren\'t authorized to see this';
+        errorMessage = "You aren't authorized to see this";
       }
 
       if (error.status === HttpStatusCode.SERVICE_UNAVAILABLE) {

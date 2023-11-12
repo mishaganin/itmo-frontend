@@ -6,6 +6,7 @@ import Post from '@/components/Post/Post.tsx';
 import Spinner from '@/components/Spinner/Spinner.tsx';
 import Footer from '@/components/Footer/Footer.tsx';
 import './PostsPage.scss';
+import FilterBar from '@/components/FilterBar/FilterBar.tsx';
 
 const PostsPage = (): React.JSX.Element => {
   const mounted = useMounted();
@@ -34,19 +35,22 @@ const PostsPage = (): React.JSX.Element => {
     <div className="posts">
       <Spinner enabled={isLoading} className="posts__spinner" />
       {!isLoading && (
-        <div className="posts__list">
-          {posts.map((post) => (
-            <Post
-              key={post.id}
-              id={post.id}
-              title={post.title}
-              content={post.content}
-              image={post.image}
-              author={post.author}
-              date={post.date}
-            />
-          ))}
-        </div>
+        <>
+          <FilterBar className="posts__filter-bar" />
+          <div className="posts__list">
+            {posts.map((post) => (
+              <Post
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                content={post.content}
+                image={post.image}
+                author={post.author}
+                date={post.date}
+              />
+            ))}
+          </div>
+        </>
       )}
       <Footer />
     </div>

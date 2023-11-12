@@ -1,10 +1,10 @@
 export interface IPost {
-  id: number,
-  title: string,
-  content: string,
-  image: string,
-  author: string,
-  date: Date,
+  id: number;
+  title: string;
+  content: string;
+  image: string;
+  author: string;
+  date: Date;
 }
 
 export enum HttpStatusCode {

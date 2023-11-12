@@ -30,22 +30,14 @@ const Header = (): React.JSX.Element => {
         <div className={clsx('nav__links', isLinksCollapsed && 'hidden')}>
           {links.map((link) => (
             <Link
-              className={
-                clsx(
-                  'link nav__link',
-                  pathname.substring(1) === link && 'active',
-                )
-              }
+              className={clsx('link nav__link', pathname.substring(1) === link && 'active')}
               to={`/${link}`}
             >
               <span>{capitalizeFirstLetter(link)}</span>
             </Link>
           ))}
         </div>
-        <button
-          type="button"
-          className="nav__hamburger hamburger"
-        >
+        <button type="button" className="nav__hamburger hamburger">
           <BurgerMenu
             fill="white"
             className="hamburger__image"
