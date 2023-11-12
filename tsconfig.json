@@ -21,15 +21,11 @@
     "allowSyntheticDefaultImports": true,
     "allowImportingTsExtensions": true,
     "emitDeclarationOnly": true,
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "paths": {
-      "@/*": [
-        "*"
-      ]
+      "@/*": ["*"]
     }
   },
-  "include": [
-    "./src"
-  ],
-  "references": [{ "path": "./tsconfig.node.json"}]
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

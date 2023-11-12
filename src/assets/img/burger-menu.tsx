@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface IBurgerMenu {
-  fill: string,
-  className: string,
-  onClick: (e: React.MouseEvent<SVGElement>) => void,
+  fill: string;
+  className: string;
+  onClick: (e: React.MouseEvent<SVGElement>) => void;
 }
 
 const BurgerMenu = ({ fill, className, onClick }: Partial<IBurgerMenu>): React.JSX.Element => (

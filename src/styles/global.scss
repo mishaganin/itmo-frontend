@@ -7,7 +7,8 @@
   }
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -19,7 +20,7 @@ html, body {
 
     &:hover {
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         bottom: -4px;
         left: 0;
@@ -30,7 +31,7 @@ html, body {
 
     &.active {
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         bottom: -4px;
         left: 0;

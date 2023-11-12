@@ -2,16 +2,15 @@ import axios from 'axios';
 
 interface ErrorResponse {
   response?: {
-    status: number,
-  }
+    status: number;
+  };
 }
 
 export const api = axios.create({
   withCredentials: false,
   baseURL: 'https://api.unsplash.com',
   headers: {
-    Authorization:
-      'Client-ID 72a2ca284231755115720589c868be9c3caf5122bea2304c12cbdbefabffde1f',
+    Authorization: 'Client-ID 72a2ca284231755115720589c868be9c3caf5122bea2304c12cbdbefabffde1f',
   },
 });
 
