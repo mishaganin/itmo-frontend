@@ -1,0 +1,109 @@
+.post-creation {
+  margin-top: 100px;
+
+  .post-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 200px;
+    padding: 30px;
+    background: #141414;
+    border: 1px solid #c8c8c8;
+
+    .post-form__body {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      .post-form__editor {
+        flex: 0 0 60%;
+        width: 100%;
+        border-right: 1px solid #c8c8c8;
+
+        &.editor {
+          display: flex;
+          flex-direction: column;
+
+          .editor__textfield {
+            resize: none;
+            color: #c8c8c8;
+            background: transparent;
+            border: none;
+            padding: 20px;
+
+            &:focus {
+              color: #ffffff;
+              outline: none;
+            }
+          }
+
+          .editor__divider {
+            height: 100%;
+            width: 1px;
+            background: #c8c8c8;
+          }
+
+          .editor__title {
+            height: 200px;
+            font-size: 37px;
+            font-weight: bold;
+          }
+
+          .editor__content {
+            height: 250px;
+            font-size: 20px;
+          }
+        }
+      }
+
+      .post-form__aside {
+        flex: 0 0 40%;
+        //border-left: 1px solid #c8c8c8;
+        padding: 0 50px;
+        box-sizing: border-box;
+
+        .post-form__title {
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 50px;
+          color: #f5da47;
+        }
+
+        .post-form__text {
+          font-family: 'Inter', sans-serif;
+          font-size: 16px;
+          line-height: 1.5rem;
+          color: #c8c8c8;
+        }
+      }
+    }
+
+    .post-form__footer {
+      .post-form__submit {
+        width: 80px;
+        height: 40px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .post-creation {
+    .post-form {
+      .post-form__aside {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 748px) {
+  .post-creation {
+    .post-form {
+      margin: 0 50px;
+
+      .post-form__aside {
+        display: none;
+      }
+    }
+  }
+}
