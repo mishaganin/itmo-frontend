@@ -1,4 +1,5 @@
 import React, { ChangeEvent, HTMLAttributes } from 'react';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import SearchBar from '@/components/SearchBar/SearchBar.tsx';
 import './FilterBar.scss';
@@ -6,8 +7,13 @@ import './FilterBar.scss';
 interface IFilterBar extends HTMLAttributes<HTMLDivElement> {}
 
 const FilterBar = ({ className, ...props }: IFilterBar) => {
+  const navigate = useNavigate();
   const handleSelectChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
+  };
+
+  const handleButtonClick = (): void => {
+    navigate('/create-post');
   };
 
   return (
@@ -17,16 +23,20 @@ const FilterBar = ({ className, ...props }: IFilterBar) => {
           <span className="search__text">Search:</span>
           <SearchBar className="search__search-bar" onChange={handleSelectChange} />
         </div>
-        {/*<div className="filter-bar__date">*/}
-        {/*  <div className="filter-bar__date-picker date-picker">*/}
-        {/*    <span className="date-picker__unit">Week</span>*/}
-        {/*    <span className="date-picker__unit">Month</span>*/}
-        {/*    <span className="date-picker__unit">Year</span>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
+        {/* <div className="filter-bar__date"> */}
+        {/*  <div className="filter-bar__date-picker date-picker"> */}
+        {/*    <span className="date-picker__unit">Week</span> */}
+        {/*    <span className="date-picker__unit">Month</span> */}
+        {/*    <span className="date-picker__unit">Year</span> */}
+        {/*  </div> */}
+        {/* </div> */}
       </div>
       <div className="filter-bar__add-post add-post">
-        <button type="button" className="add-post__button">
+        <button
+          type="button"
+          className="add-post__button action-button"
+          onClick={handleButtonClick}
+        >
           Create post
         </button>
       </div>

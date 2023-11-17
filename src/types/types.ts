@@ -3,7 +3,7 @@ export interface IPost {
   title: string;
   content: string;
   image: string;
-  author: string;
+  author: string; // TODO change to userId: number and then fetch the name of author by his id
   date: Date;
 }
 

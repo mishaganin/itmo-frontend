@@ -1,6 +1,6 @@
 .home {
   display: flex;
-  margin: 6rem 100px 0 100px;
+  margin: 5rem 200px 0 200px;
 
   .home__column {
     flex: 1;
@@ -48,7 +48,7 @@
 @media screen and (max-width: 748px) {
   .home {
     flex-direction: column;
-    margin: 6rem 50px;
+    margin: 5rem 50px;
 
     .introduction {
       margin-top: 50px;

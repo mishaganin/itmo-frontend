@@ -3,17 +3,18 @@
   flex-direction: column;
   flex: 1;
   border: 0.5px solid #b2b2b2;
-  border-radius: 3px;
+  border-radius: 10px;
   min-width: 200px;
   padding: 20px;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   color: #c8c8c8;
+  background: rgb(30, 30, 30);
   cursor: pointer;
 
   &:hover {
-    //padding: 5px;
-    //box-shadow: 1px 1px 20px #f5da47;
+    background: transparent;
+    box-shadow: 1px 1px 10px #f5da47;
   }
 
   .post__link {

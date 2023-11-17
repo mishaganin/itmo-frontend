@@ -13,4 +13,5 @@ export const PostsAPI = {
       }),
     );
   },
+  post: async () => {},
 };
