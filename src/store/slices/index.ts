@@ -1,4 +1,4 @@
-import postsReducer from './posts/index.ts';
+import postsReducer from './posts';
 
 const reducers = {
   posts: postsReducer,
