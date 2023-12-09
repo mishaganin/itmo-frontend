@@ -4,12 +4,14 @@ import clsx from 'clsx';
 import SearchBar from '@/components/SearchBar/SearchBar.tsx';
 import './FilterBar.scss';
 
-interface IFilterBar extends HTMLAttributes<HTMLDivElement> {}
+interface IFilterBar extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  onChange: (e: ChangeEvent<HTMLInputElement>, value: string) => void;
+}
 
-const FilterBar = ({ className, ...props }: IFilterBar) => {
+const FilterBar = ({ onChange, className, ...props }: IFilterBar) => {
   const navigate = useNavigate();
   const handleSelectChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    onChange(e, e.target.value);
   };
 
   const handleButtonClick = (): void => {

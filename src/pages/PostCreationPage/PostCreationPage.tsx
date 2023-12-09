@@ -20,12 +20,10 @@ const PostCreationPage = () => {
   const [content, setContent] = useState<string>('');
 
   const handleTitleChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-    console.log(e.target.value);
     setTitle(e.target.value);
   };
 
   const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-    console.log(e.target.value);
     setContent(e.target.value);
   };
 
