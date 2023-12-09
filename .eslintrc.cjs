@@ -67,19 +67,6 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: [
-          '**/*.stories.*',
-          '**/.storybook/**/*.*',
-          'test.{ts,tsx}',
-          'test-*.{ts,tsx}',
-          '**/*{.,_}{test,spec}.{ts,tsx}',
-        ],
-        peerDependencies: true,
-      },
-    ],
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -90,6 +77,7 @@ module.exports = {
         tsx: 'always',
       },
     ],
+
     'react/jsx-filename-extension': [
       1,
       {
