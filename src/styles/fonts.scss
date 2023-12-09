@@ -2,21 +2,28 @@
 
 @font-face {
   font-family: 'Founders Grotesk';
-  src: local('Founders Grotesk'), url('../assets/fonts/Founders Grotesk Bold 700.otf') format('otf');
+  src:
+    local('Founders Grotesk'),
+    url('../assets/fonts/Founders Grotesk Bold 700.otf') format('otf');
 }
 
 @font-face {
   font-family: 'Founders Grotesk Bold';
-  src: local('Founders Grotesk Bold'), url('../assets/fonts/FoundersGrotesk-Bold.otf') format('otf');
+  src:
+    local('Founders Grotesk Bold'),
+    url('../assets/fonts/FoundersGrotesk-Bold.otf') format('otf');
 }
 
 @font-face {
   font-family: 'Founders Grotesk Semibold';
-  src: local('Founders Grotesk Semibold'),
+  src:
+    local('Founders Grotesk Semibold'),
     url('../assets/fonts/Test Founders Grotesk SmB 600.otf') format('otf');
 }
 
 @font-face {
   font-family: 'Inter';
-  src: local('Inter'), url('../assets/fonts/Inter-ExtraBold.ttf') format('ttf');
+  src:
+    local('Inter'),
+    url('../assets/fonts/Inter-ExtraBold.ttf') format('ttf');
 }

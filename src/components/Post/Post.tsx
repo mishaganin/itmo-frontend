@@ -25,8 +25,7 @@ const Post = ({ id, title, content, image, author, date }: IPost): React.JSX.Ele
       <div className="post__content">{content}</div>
       <div className="post__info">
         <div className="post__author">
-          by
-          {' '}
+          by{' '}
           <span className="post__link link" onClick={handleAuthorClick}>
             {author}
           </span>

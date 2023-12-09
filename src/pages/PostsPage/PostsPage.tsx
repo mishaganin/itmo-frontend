@@ -7,19 +7,26 @@ import Spinner from '@/components/Spinner/Spinner.tsx';
 import Footer from '@/components/Footer/Footer.tsx';
 import './PostsPage.scss';
 import FilterBar from '@/components/FilterBar/FilterBar.tsx';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { fetchPosts } from '@/store/slices/posts';
 
 const PostsPage = (): React.JSX.Element => {
+  const dispatch = useAppDispatch();
+  const { posts, status } = useAppSelector((state) => state.posts);
   const mounted = useMounted();
 
-  const [posts, setPosts] = useState<IPost[]>([]);
+  // const [posts, setPosts] = useState<IPost[]>([]);
   const [isLoading, setLoading] = useState<boolean>(true);
 
   const getPosts = useCallback(async () => {
     try {
-      const data = await PostsAPI.getAll();
+      // const data = await PostsAPI.getAll();
+      if (status === 'idle') {
+        dispatch(fetchPosts());
+      }
 
       if (mounted.current) {
-        setPosts(data);
+        // setPosts(data);
         setLoading(false);
       }
     } catch (err) {
@@ -33,7 +40,7 @@ const PostsPage = (): React.JSX.Element => {
 
   return (
     <div className="posts">
-      <Spinner enabled={isLoading} className="posts__spinner" />
+      <Spinner enabled={status === 'loading'} className="posts__spinner" />
       {!isLoading && (
         <>
           <FilterBar className="posts__filter-bar" />
