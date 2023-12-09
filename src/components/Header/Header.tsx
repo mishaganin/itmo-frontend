@@ -30,6 +30,7 @@ const Header = (): React.JSX.Element => {
         <div className={clsx('nav__links', isLinksCollapsed && 'hidden')}>
           {links.map((link) => (
             <Link
+              key={link}
               className={clsx('link nav__link', pathname.substring(1) === link && 'active')}
               to={`/${link}`}
             >
