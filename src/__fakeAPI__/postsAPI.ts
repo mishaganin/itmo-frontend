@@ -1,4 +1,5 @@
 import { IPost } from '@/types/types.ts';
+import { v4 as uuidv4 } from 'uuid';
 
 class PostsAPI {
   getPosts(): Promise<IPost[]> {
@@ -90,7 +91,7 @@ class PostsAPI {
     for (let i = 0; i < data.length; i += 1) {
       const [author, title, content]: string[] = data[i];
       const post: IPost = {
-        id: i,
+        id: uuidv4(),
         title,
         content,
         image: '',
@@ -99,8 +100,6 @@ class PostsAPI {
       };
       posts.push(post);
     }
-
-    console.log(posts);
 
     return Promise.resolve(posts);
   }

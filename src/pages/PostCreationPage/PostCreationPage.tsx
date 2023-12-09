@@ -1,7 +1,21 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { v4 as uuidv4 } from 'uuid';
+import postsPage from '@/pages/PostsPage/PostsPage.tsx';
+import { IPost } from '@/types/types.ts';
+import { useAppDispatch } from '@/store';
+import { addPost } from '@/store/slices/posts';
+
 import './PostCreationPage.scss';
 
+const DEFAULT_IMAGE_SRC =
+  'https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDU2M3wwfDF8c2VhcmNofDN8fGNvZGluZ3xlbnwwfDB8fHwxNzAyMDc3NTM5fDA&ixlib=rb-4.0.3&q=80&w=400';
+
 const PostCreationPage = () => {
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
 
@@ -15,13 +29,25 @@ const PostCreationPage = () => {
     setContent(e.target.value);
   };
 
-  const handleSubmitClick = (e: FormEvent<HTMLButtonElement>): void => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    const newPost: IPost = {
+      id: uuidv4(),
+      title,
+      content,
+      author: 'Misha Ganin',
+      image: DEFAULT_IMAGE_SRC,
+      date: new Date(),
+    };
+    if (newPost.title && newPost.content) {
+      dispatch(addPost(newPost));
+      navigate('/posts');
+    }
   };
 
   return (
     <div className="post-creation">
-      <form className="post-form">
+      <form className="post-form" onSubmit={handleSubmit}>
         <div className="post-form__body">
           <div className="post-form__editor editor">
             <textarea
@@ -50,11 +76,7 @@ const PostCreationPage = () => {
           </aside>
         </div>
         <div className="post-form__footer">
-          <button
-            type="submit"
-            className="post-form__submit action-button"
-            onSubmit={handleSubmitClick}
-          >
+          <button type="submit" className="post-form__submit action-button">
             Publish
           </button>
         </div>

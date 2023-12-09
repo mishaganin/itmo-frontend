@@ -28,7 +28,7 @@ export const postsSlice = createSlice({
     addPost: (state, { payload }: PayloadAction<IPost>) => {
       state.posts.push(payload);
     },
-    deletePost: (state, { payload }: PayloadAction<number>) => {
+    deletePost: (state, { payload }: PayloadAction<string>) => {
       state.posts.splice(
         state.posts.findIndex((post) => post.id === payload),
         1,
