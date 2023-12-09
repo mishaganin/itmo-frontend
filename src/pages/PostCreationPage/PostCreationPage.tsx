@@ -1,6 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router';
-
 import { v4 as uuidv4 } from 'uuid';
 import postsPage from '@/pages/PostsPage/PostsPage.tsx';
 import { IPost } from '@/types/types.ts';
