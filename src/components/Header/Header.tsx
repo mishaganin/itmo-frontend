@@ -13,7 +13,6 @@ const Header = (): React.JSX.Element => {
   const [isLinksCollapsed, setLinksCollapsed] = useState<boolean>(false);
 
   const { pathname } = useLocation();
-  console.log(pathname);
 
   const handleHamburgerMenuClick = () => {
     setLinksCollapsed((previousState) => !previousState);

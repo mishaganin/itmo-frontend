@@ -6,7 +6,7 @@ import './ErrorBoundary.scss';
 const ErrorBoundary = () => {
   const error = useRouteError();
 
-  console.log(error);
+  console.error(error);
 
   const renderErrorMessage = (): JSX.Element => {
     let errorMessage = 'Sorry.. there was an error';
