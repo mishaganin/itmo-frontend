@@ -16,5 +16,14 @@
     .footer__link {
       color: #c8c8c8;
     }
+
+    .footer__load-time {
+      color: rgb(30, 30, 30);
+      cursor: pointer;
+
+      &:hover {
+        color: #c8c8c8;
+      }
+    }
   }
 }
