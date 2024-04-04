@@ -1,3 +1,3 @@
-# itmo-web
+# DevShare
 
 ## Михаил Ганин
