@@ -18,6 +18,7 @@ const errorHandler = (error: ErrorResponse): Promise<ErrorResponse> => {
   const statusCode = error.response?.status;
 
   if (statusCode) {
+    // TODO create Toast component
     console.error(error);
   }
 

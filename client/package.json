@@ -1,5 +1,5 @@
 {
-  "name": "itmo-web",
+  "name": "devshare-frontend",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -51,6 +51,6 @@
     "prettier": "^3.1.0",
     "sass": "^1.69.5",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^5.2.8"
   }
 }
