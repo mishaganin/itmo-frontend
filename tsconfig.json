@@ -10,7 +10,7 @@
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "incremental": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
@@ -57,8 +57,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next.config.js",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".eslintrc.cjs"
   ],
   "exclude": [
     "node_modules",
