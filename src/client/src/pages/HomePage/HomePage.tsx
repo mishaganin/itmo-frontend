@@ -18,7 +18,7 @@ const HomePage = (): React.JSX.Element => (
       </div>
     </div>
     <div className="home__column image__wrapper">
-      <img className="image" src={image} alt="coding" />
+      <img className="image" src={image.src} alt="coding" />
     </div>
   </div>
 );
