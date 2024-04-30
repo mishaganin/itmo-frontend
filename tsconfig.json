@@ -10,7 +10,7 @@
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "incremental": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
@@ -29,15 +29,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
-      "@/*": [
+      "@client/*": [
         "./src/client/*"
-      ],
-      "@app/*": [
-        "./src/app/*"
       ],
       "@server/*": [
         "./src/server/*"
-      ]
+      ],
     },
     "plugins": [
       {
@@ -54,14 +51,13 @@
     //    "emitDeclarationOnly": true
   },
   "include": [
+    ".eslintrc.cjs",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".eslintrc.cjs"
   ],
   "exclude": [
     "node_modules",
-    "src/client"
   ]
 }
