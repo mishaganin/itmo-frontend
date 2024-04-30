@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, isRouteErrorResponse, useRouteError } from 'react-router-dom';
-import { HttpStatusCode } from '@client/types/types.ts';
+import { HttpStatusCode } from '@client/types/types';
 import './ErrorBoundary.scss';
 
 const ErrorBoundary = () => {

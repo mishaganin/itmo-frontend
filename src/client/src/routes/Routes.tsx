@@ -1,10 +1,10 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import App from '@client/App.tsx';
-import HomePage from '@client/pages/HomePage/HomePage.tsx';
-import PostsPage from '@client/pages/PostsPage/PostsPage.tsx';
-import ErrorBoundary from '@client/components/ErrorBoundary/ErrorBoundary.tsx';
-import PostCreationPage from '@client/pages/PostCreationPage/PostCreationPage.tsx';
+import App from '@client/App';
+import HomePage from '@client/pages/HomePage/HomePage';
+import PostsPage from '@client/pages/PostsPage/PostsPage';
+import ErrorBoundary from '@client/components/ErrorBoundary/ErrorBoundary';
+import PostCreationPage from '@client/pages/PostCreationPage/PostCreationPage';
 
 export const router = createBrowserRouter([
   {

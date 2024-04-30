@@ -1,4 +1,4 @@
-import { IPost } from '@client/types/types.ts';
+import { IPost } from '@client/types/types';
 import { v4 as uuidv4 } from 'uuid';
 
 class PostsAPI {

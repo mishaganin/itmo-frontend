@@ -1,7 +1,7 @@
 import React, { ChangeEvent, HTMLAttributes } from 'react';
 import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
-import SearchBar from '@client/components/SearchBar/SearchBar.tsx';
+import SearchBar from '@client/components/SearchBar/SearchBar';
 import './FilterBar.scss';
 
 interface IFilterBar extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {

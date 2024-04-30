@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { IPost } from '@client/types/types.ts';
-import { PostsAPI } from '@client/api/postsAPI.ts';
+import { IPost } from '@client/types/types';
+import { PostsAPI } from '@client/api/postsAPI';
 
 export interface PostsState {
   status: 'idle' | 'loading' | 'succeeded' | 'failed';

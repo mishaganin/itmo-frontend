@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 // import Burger from '../../assets/img/burger-menu.svg';
 import clsx from 'clsx';
 import { useLocation } from 'react-router';
-import BurgerMenu from '@client/assets/img/burger-menu.tsx';
-import capitalizeFirstLetter from '@client/utils/capitalizeFirstLetter.ts';
+import BurgerMenu from '@client/assets/img/burger-menu';
+import capitalizeFirstLetter from '@client/utils/capitalizeFirstLetter';
 import './Header.scss';
 
 const Header = (): React.JSX.Element => {

@@ -1,4 +1,4 @@
-import { api } from './configs/axiosConfigs.ts';
+import { api } from './configs/axiosConfigs';
 
 export const ImagesAPI = {
   getAll: async () => {

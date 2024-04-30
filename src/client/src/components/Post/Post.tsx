@@ -1,7 +1,7 @@
 import React, { MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import showDate from '@client/utils/showDate.ts';
-import { IPost } from '@client/types/types.ts';
+import showDate from '@client/utils/showDate';
+import { IPost } from '@client/types/types';
 import './Post.scss';
 
 const Post = ({ id, title, content, image, author, date }: IPost): React.JSX.Element => {

@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
-import postsPage from '@client/pages/PostsPage/PostsPage.tsx';
-import { IPost } from '@client/types/types.ts';
+import postsPage from '@client/pages/PostsPage/PostsPage';
+import { IPost } from '@client/types/types';
 import { useAppDispatch } from '@client/store';
 import { addPost } from '@client/store/slices/posts';
 

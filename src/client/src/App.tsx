@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
-import Header from '@client/components/Header/Header.tsx';
+import Header from '@client/components/Header/Header';
 
 import '@client/styles/global.scss';
 import { makeReduxStore } from './store/store';

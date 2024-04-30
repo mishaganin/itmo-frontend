@@ -1,12 +1,12 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import useMounted from '@client/hooks/useMounted.ts';
-import { IPost } from '@client/types/types.ts';
-import { PostsAPI } from '@client/api/postsAPI.ts';
-import Post from '@client/components/Post/Post.tsx';
-import Spinner from '@client/components/Spinner/Spinner.tsx';
-import Footer from '@client/components/Footer/Footer.tsx';
+import useMounted from '@client/hooks/useMounted';
+import { IPost } from '@client/types/types';
+import { PostsAPI } from '@client/api/postsAPI';
+import Post from '@client/components/Post/Post';
+import Spinner from '@client/components/Spinner/Spinner';
+import Footer from '@client/components/Footer/Footer';
 import './PostsPage.scss';
-import FilterBar from '@client/components/FilterBar/FilterBar.tsx';
+import FilterBar from '@client/components/FilterBar/FilterBar';
 import { useAppDispatch, useAppSelector } from '@client/store';
 import { fetchPosts } from '@client/store/slices/posts';
 
