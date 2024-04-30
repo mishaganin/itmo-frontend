@@ -1,7 +1,5 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import useMounted from '@client/hooks/useMounted';
-import { IPost } from '@client/types/types';
-import { PostsAPI } from '@client/api/postsAPI';
 import Post from '@client/components/Post/Post';
 import Spinner from '@client/components/Spinner/Spinner';
 import Footer from '@client/components/Footer/Footer';

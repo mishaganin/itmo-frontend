@@ -17,6 +17,7 @@ const Post = ({ id, title, content, image, author, date }: IPost): React.JSX.Ele
   };
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div className="post" onClick={handlePostClick} onKeyDown={handlePostClick}>
       <div className="post__image-wrapper">
         <img src={image} alt="post" className="post__image" />
@@ -26,9 +27,9 @@ const Post = ({ id, title, content, image, author, date }: IPost): React.JSX.Ele
       <div className="post__info">
         <div className="post__author">
           by{' '}
-          <span className="post__link link" onClick={handleAuthorClick}>
+          <button type="button" className="post__link link" onClick={handleAuthorClick}>
             {author}
-          </span>
+          </button>
         </div>
         <div className="post__date">{showDate(date)}</div>
       </div>

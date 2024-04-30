@@ -37,7 +37,7 @@ const Header = (): React.JSX.Element => {
             </Link>
           ))}
         </div>
-        <button type="button" className="nav__hamburger hamburger">
+        <button type="button" aria-label="hamburger" className="nav__hamburger hamburger">
           <BurgerMenu
             fill="white"
             className="hamburger__image"

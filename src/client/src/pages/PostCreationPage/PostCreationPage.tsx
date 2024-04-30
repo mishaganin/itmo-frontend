@@ -1,7 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
-import postsPage from '@client/pages/PostsPage/PostsPage';
 import { IPost } from '@client/types/types';
 import { useAppDispatch } from '@client/store';
 import { addPost } from '@client/store/slices/posts';
@@ -9,6 +8,7 @@ import { addPost } from '@client/store/slices/posts';
 import './PostCreationPage.scss';
 
 const DEFAULT_IMAGE_SRC =
+  // eslint-disable-next-line max-len
   'https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDU2M3wwfDF8c2VhcmNofDN8fGNvZGluZ3xlbnwwfDB8fHwxNzAyMDc3NTM5fDA&ixlib=rb-4.0.3&q=80&w=400';
 
 const PostCreationPage = () => {

@@ -22,7 +22,7 @@ class PostsAPI {
       ],
       [
         'Misha Ganin',
-        "Open Source Community's Latest Achievement",
+        'Open Source Community\'s Latest Achievement',
         'The open-source community celebrates another milestone with the release of a powerful new tool that simplifies software development. This collaborative effort demonstrates the strength of community-driven development.',
       ],
       [
@@ -32,7 +32,7 @@ class PostsAPI {
       ],
       [
         'Misha Ganin',
-        "Blockchain's Impact on Software Development",
+        'Blockchain\'s Impact on Software Development',
         'The influence of blockchain technology on software development is explored in this article. From decentralized applications to smart contracts, blockchain is reshaping how software is created and deployed.',
       ],
       [
@@ -77,8 +77,8 @@ class PostsAPI {
       ],
       [
         'Misha Ganin',
-        "GitHub's Latest Features for Developers",
-        "GitHub, a leading platform for version control and collaboration, has introduced new features aimed at making developers' lives easier. Learn about the enhancements that GitHub is offering to the programming community.",
+        'GitHub\'s Latest Features for Developers',
+        'GitHub, a leading platform for version control and collaboration, has introduced new features aimed at making developers\' lives easier. Learn about the enhancements that GitHub is offering to the programming community.',
       ],
     ];
     /* eslint-enable max-len */
