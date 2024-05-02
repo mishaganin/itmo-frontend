@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter&family=Lato&family=Oswald:wght@700&family=Pixelify+Sans&family=Raleway&display=swap');
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src:
+    local('Founders Grotesk'),
+    url('../../client/assets/fonts/Founders Grotesk Bold 700.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Founders Grotesk Bold';
+  src:
+    local('Founders Grotesk Bold'),
+    url('../../client/assets/fonts/FoundersGrotesk-Bold.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Founders Grotesk Semibold';
+  src:
+    local('Founders Grotesk Semibold'),
+    url('../../client/assets/fonts/Test Founders Grotesk SmB 600.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    local('Inter'),
+    url('../../client/assets/fonts/Inter-ExtraBold.ttf') format('ttf');
+}
