@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { HttpStatusCode } from '@shared/types';
+// import { HttpStatusCode } from '@shared/types';
 
 import styles from './ErrorBoundary.module.scss';
 
@@ -8,7 +8,7 @@ const ErrorBoundary = () => {
 
 
   const renderErrorMessage = (): JSX.Element => {
-    let errorMessage = 'Sorry.. there was an error';
+    const errorMessage = 'Sorry.. there was an error';
     // if (isRouteErrorResponse(error)) {
     //   if (error.status === HttpStatusCode.NOT_FOUND) {
     //     errorMessage = 'This page doesn\'t exist!';

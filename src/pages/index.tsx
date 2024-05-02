@@ -8,6 +8,7 @@ const HomePage = (): React.JSX.Element => (
   <div className={styles.home}>
     <div className={clsx(styles.home__column, styles.introduction)}>
       <div className={styles.introduction__title}>
+        {/* eslint-disable-next-line max-len */}
         An open forum for <span className={styles.introduction__title_red}>writing</span> programming
         articles, <span className={styles.introduction__title_green}>reading</span> them, and{' '}
         <span className={styles.introduction__title_blue}>sharing</span> your thoughts
