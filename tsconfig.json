@@ -30,11 +30,14 @@
     "isolatedModules": true,
     "paths": {
       "@client/*": [
-        "./src/client/src/*"
+        "./src/client/*"
       ],
       "@server/*": [
-        "./src/server/src/*"
+        "./src/server/*"
       ],
+      "@shared/*": [
+        "./src/shared/*"
+      ]
     },
     "plugins": [
       {
