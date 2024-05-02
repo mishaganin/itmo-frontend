@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 // import { HttpStatusCode } from '@shared/types';
 
-import './ErrorBoundary.scss';
+// import '@client/ErrorBoundary.scss';
 
 const Error = () => {
   // const error = useRouteError();

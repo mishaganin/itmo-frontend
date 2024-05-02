@@ -17,7 +17,8 @@
     "start:next": "next dev",
     "start:dev": "nest start --path ./tsconfig.server.json --watch",
     "start:debug": "nest start --path ./tsconfig.server.json --debug --watch",
-    "start:prod": "node dist/main"
+    "start:prod": "node dist/main",
+    "lint": "yarn run eslint . --ignore-pattern \"node_modules/*\""
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
