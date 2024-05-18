@@ -9,7 +9,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-server/types
+src/types
 dist
 dist-ssr
 *.local

@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { map, toArray } from 'rxjs';
 import { ArticleService } from './article.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
@@ -15,6 +16,11 @@ export class ArticleController {
   @Get()
   findAll() {
     return this.articleService.findAll();
+  }
+
+  @Get('get-all')
+  getArticles() {
+    return this.articleService.getArticles();
   }
 
   @Get(':id')

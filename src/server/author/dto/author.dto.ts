@@ -2,16 +2,7 @@ import { IsArray, IsString } from 'class-validator';
 
 export class AuthorDto {
   @IsString()
-    id!: string;
-
-  @IsString()
-    username!: string;
-
-  @IsString()
-    email!: string;
-
-  @IsString()
-    password!: string;
+    accountId?: string
 
   @IsArray()
     followedAuthorIds!: string[]

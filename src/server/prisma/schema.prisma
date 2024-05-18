@@ -2,63 +2,80 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator prismaClassGenerator {
+  provider = "prisma-class-generator"
+  dryRun = false
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model Account {
-  id       String @id @default(uuid())
-  username String @unique @default("")
-  email    String @unique @default("")
-  password String @default("")
+  id       String  @id @default(uuid())
+  username String  @unique
+  email    String  @unique
+  password String
+  reader   Reader?
 }
 
 model Reader {
-  id              String   @id @default(uuid())
-  username        String   @default("")
-  email           String   @unique @default("")
-  password        String   @default("")
-  followedAuthors Author[] @relation("FollowedAuthors")
+  id                String         @id @default(uuid())
+  readerFollowToAuthorsId String  @unique
+  readerFollowToAuthors ReaderFollowToAuthors @relation(fields: [readerFollowToAuthorsId], references: [id])
+  accountId         String         @unique
+  account           Account        @relation(fields: [accountId], references: [id])
+  articleLists      ArticleList[]
+  author            Author?
+  comments          Comment[]
+}
+
+model ReaderFollowToAuthors {
+  id                String        @id @default(uuid())
+  followedAuthors   Author[]
+  reader            Reader?
 }
 
 model Author {
-  id              String    @id @default(uuid())
-  username        String    @default("")
-  email           String    @unique @default("")
-  password        String    @default("")
-  followedReaders Reader[]  @relation("FollowedAuthors")
-  articles        Article[]
-  Comment         Comment[]
+  id        String    @id @default(uuid())
+  articles  Article[]
+  readerId  String    @unique
+  reader    Reader    @relation(fields: [readerId], references: [id])
+  readerFollowToAuthorsIds String[]
+  readerFollowToAuthors ReaderFollowToAuthors[]
 }
 
 model Article {
-  id            String       @id @default(uuid())
-  title         String       @default("")
-  description   String       @default("")
-  author        Author       @relation(fields: [authorId], references: [id])
-  authorId      String
-  comments      Comment[]
-  ArticleList   ArticleList? @relation(fields: [articleListId], references: [id])
-  articleListId String?
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  tags        String
+  reactions   Json
+  authorId    String
+  author      Author     @relation(fields: [authorId], references: [id])
+  comments    Comment[]
+  ArticleList ArticleList[]
 }
 
 model ArticleList {
   id       String    @id @default(uuid())
-  name     String    @default("")
+  name     String
   articles Article[]
+  readerId String    @unique
+  reader   Reader    @relation(fields: [readerId], references: [id])
 }
 
 model Reaction {
-  id       String @id @default(uuid())
-  iconType Int    @default(0)
+  id    String @id @default(uuid())
+  icon  String
 }
 
 model Comment {
-  id        String  @id @default(uuid())
-  content   String  @default("")
-  author    Author  @relation(fields: [authorId], references: [id])
+  id        String @id @default(uuid())
+  content   String
   authorId  String
+  author    Reader @relation(fields: [authorId], references: [id])
+  articleId String @unique
   article   Article @relation(fields: [articleId], references: [id])
-  articleId String
 }
