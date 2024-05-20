@@ -5,13 +5,13 @@ import { Author } from '@server/author/entities/author.entity';
 import { ReaderFollowToAuthors } from './reader-follow-to-authors.entity';
 
 export class Reader {
-  @ApiProperty({ type: String })
+  @ApiProperty({ type: 'uuid' })
     id!: string;
 
-  @ApiProperty({ type: String })
-    readerFollowToAuthorsId!: string;
+  @ApiProperty({ nullable: true, type: String })
+    readerFollowToAuthorsId!: string | null;
 
-  @ApiProperty({ type: () => ReaderFollowToAuthors })
+  @ApiProperty({ nullable: true, type: () => ReaderFollowToAuthors })
     readerFollowToAuthors!: ReaderFollowToAuthors;
 
   @ApiProperty({ type: String })
@@ -23,7 +23,7 @@ export class Reader {
   @ApiProperty({ isArray: true, type: () => ArticleList })
     articleLists!: ArticleList[];
 
-  @ApiPropertyOptional({ type: () => Author })
+  @ApiPropertyOptional({ nullable: true, type: () => Author })
     author?: Author;
 
   @ApiProperty({ isArray: true, type: () => Comment })

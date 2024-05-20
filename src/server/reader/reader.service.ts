@@ -1,11 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateReaderDto } from './dto/create-reader.dto';
 import { UpdateReaderDto } from './dto/update-reader.dto';
+import { PrismaService } from '@server/prisma.service';
+import { v4 as uuidv4 } from 'uuid';
+import { ArticleList } from '@prisma/client';
+import { FollowAuthorDto } from '@server/reader/dto/follow-author.dto';
 
 @Injectable()
 export class ReaderService {
-  create(createReaderDto: CreateReaderDto) {
-    return 'This action adds a new reader';
+  constructor(private prisma: PrismaService) {}
+
+  async create(createReaderDto: CreateReaderDto) {
+    const { accountId } = createReaderDto;
+    return this.prisma.reader.create({
+      data: {
+        id: uuidv4(),
+        accountId,
+        readerFollowToAuthorsId: null,
+        readerFollowToAuthors: null,
+        articleLists: {
+          create: []
+        },
+        author: {
+          connect: null,
+        },
+        comments: {
+          create: []
+        },
+      }
+    })
   }
 
   findAll() {
@@ -22,5 +45,17 @@ export class ReaderService {
 
   remove(id: number) {
     return `This action removes a #${id} reader`;
+  }
+
+  async followAuhtor(followAuthorDto: FollowAuthorDto) {
+    const { readerId, authorId } = followAuthorDto;
+    return this.prisma.readerFollowToAuthors.update({
+      where: { id: readerId },
+      data: {
+        followedAuthors: {
+          connect: { id: authorId },
+        },
+      },
+    });
   }
 }

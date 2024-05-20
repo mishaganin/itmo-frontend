@@ -13,11 +13,11 @@ export class Article {
   @ApiProperty({ type: String })
     description!: string;
 
-  @ApiProperty({ type: String })
-    tags!: string;
+  @ApiProperty({ isArray: true, type: () => String })
+    tags!: string[];
 
   @ApiProperty({ type: Object })
-    reactions!: object;
+    reactions!: Record<string, string[]> | null;
 
   @ApiProperty({ type: String })
     authorId!: string;
@@ -29,5 +29,5 @@ export class Article {
     comments!: Comment[];
 
   @ApiProperty({ isArray: true, type: () => ArticleList })
-    ArticleList!: ArticleList[];
+    articleList!: ArticleList[];
 }

@@ -25,18 +25,18 @@ import { AuthModule } from './auth/auth.module';
       Next({ dev: NODE_ENV === 'development' }),
       { viewsDir: null }
     ),
-    TypeOrmModule.forRootAsync({
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DATABASE_URL'),
-        port: 3306,
-        username: configService.get('DATABASE_USERNAME'),
-        password: configService.get('DATABASE_PASSWORD'),
-        database: configService.get('DATABASE'),
-        entities: [User],
-        synchronize: true,
-      })
-    }),
+    // TypeOrmModule.forRootAsync({
+    //   useFactory: (configService: ConfigService) => ({
+    //     type: 'postgres',
+    //     host: configService.get('DATABASE_URL'),
+    //     port: 3306,
+    //     username: configService.get('DATABASE_USERNAME'),
+    //     password: configService.get('DATABASE_PASSWORD'),
+    //     database: configService.get('DATABASE'),
+    //     entities: [],
+    //     synchronize: true,
+    //   })
+    // }),
     AuthModule,
     AuthorModule,
     ReaderModule,

@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import clsx from 'clsx';

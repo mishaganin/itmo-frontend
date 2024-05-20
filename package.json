@@ -16,7 +16,7 @@
     "start": "node ./dist/server/main.js",
     "start:next": "next dev",
     "start:dev": "NODE_ENV=development nest start --path ./tsconfig.server.json --watch",
-    "start:debug": "nest start --path ./tsconfig.server.json --debug --watch",
+    "start:debug": "next build && nest start --path ./tsconfig.server.json --debug --watch",
     "start:prod": "node dist/main",
     "lint": "yarn run eslint . --ignore-pattern \"node_modules/*\""
   },

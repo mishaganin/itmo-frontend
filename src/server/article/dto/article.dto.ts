@@ -12,7 +12,7 @@ export class ArticleDto {
     description!: string;
 
   @IsArray()
-  @Type(() => Number)
+  @Type(() => String)
     tags!: string[];
 
   @IsObject()

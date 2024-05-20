@@ -2,10 +2,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator prismaClassGenerator {
-  provider = "prisma-class-generator"
-  dryRun = false
-}
+// generator prismaClassGenerator {
+//   provider = "prisma-class-generator"
+//   dryRun = false
+// }
 
 datasource db {
   provider = "postgresql"
@@ -21,14 +21,15 @@ model Account {
 }
 
 model Reader {
-  id                String         @id @default(uuid())
-  readerFollowToAuthorsId String  @unique
-  readerFollowToAuthors ReaderFollowToAuthors @relation(fields: [readerFollowToAuthorsId], references: [id])
-  accountId         String         @unique
-  account           Account        @relation(fields: [accountId], references: [id])
-  articleLists      ArticleList[]
-  author            Author?
-  comments          Comment[]
+  id                      String         @id @default(uuid())
+  readerFollowToAuthorsId String?  @unique
+  readerFollowToAuthors   ReaderFollowToAuthors? @relation(fields: [readerFollowToAuthorsId], references: [id])
+  accountId               String         @unique
+  account                 Account        @relation(fields: [accountId], references: [id])
+  articleLists            ArticleList[]
+  author                  Author?
+  comments                Comment[]
+  reactions               Json
 }
 
 model ReaderFollowToAuthors {
@@ -38,24 +39,25 @@ model ReaderFollowToAuthors {
 }
 
 model Author {
-  id        String    @id @default(uuid())
-  articles  Article[]
-  readerId  String    @unique
-  reader    Reader    @relation(fields: [readerId], references: [id])
+  id                       String    @id @default(uuid())
+  articles                 Article[]
+  readerId                 String    @unique
+  reader                   Reader    @relation(fields: [readerId], references: [id])
   readerFollowToAuthorsIds String[]
-  readerFollowToAuthors ReaderFollowToAuthors[]
+  readerFollowToAuthors    ReaderFollowToAuthors[]
 }
 
 model Article {
   id          String     @id @default(uuid())
   title       String
   description String
-  tags        String
+  imageUrl    String
+  tags        String[]
   reactions   Json
   authorId    String
   author      Author     @relation(fields: [authorId], references: [id])
   comments    Comment[]
-  ArticleList ArticleList[]
+  articleList ArticleList[]
 }
 
 model ArticleList {
@@ -67,8 +69,8 @@ model ArticleList {
 }
 
 model Reaction {
-  id    String @id @default(uuid())
-  icon  String
+  id        String @id @default(uuid())
+  icon      String
 }
 
 model Comment {

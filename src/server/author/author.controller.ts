@@ -9,8 +9,9 @@ export class AuthorController {
   constructor(private readonly authorService: AuthorService) {}
 
   @Post()
-  create(@Body() createAuthorDto: CreateAuthorDto) {
-    return this.authorService.create(createAuthorDto);
+  async create(@Body() createAuthorDto: CreateAuthorDto) {
+    console.log(createAuthorDto);
+    return await this.authorService.create(createAuthorDto);
   }
 
   @Get()
@@ -35,6 +36,6 @@ export class AuthorController {
 
   @Get('/publish')
   publishArticle(@Body() publishArticleDto: PublishArticleDto) {
-    this.authorService
+    this.authorService.publishArticle(publishArticleDto.title, publishArticleDto.description, publishArticleDto.authorId);
   }
 }
