@@ -1,8 +1,17 @@
-import { IsArray, IsObject, IsString, ValidateNested } from 'class-validator';
+import {
+  IsArray,
+  IsDate,
+  IsObject,
+  IsString,
+  IsUrl,
+  IsUUID,
+  ValidateNested,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class ArticleDto {
   @IsString()
+  @IsUUID('4')
     id!: string;
 
   @IsString()
@@ -11,19 +20,26 @@ export class ArticleDto {
   @IsString()
     description!: string;
 
+  @IsUrl()
+    imageUrl!: string;
+
   @IsArray()
   @Type(() => String)
     tags!: string[];
 
   @IsObject()
   @ValidateNested()
-  @Type(() => Number)
-    reactions!: Record<string, number>;
+  @Type(() => () => String)
+    reactions!: Record<string, string[]>;
 
   @IsString()
+  @IsUUID('4')
     authorId!: string;
 
   @IsArray()
-  @Type(() => String)
+  @IsUUID('4', { each: true })
     commentIds!: string[];
+
+  @IsDate()
+    createdAt!: Date;
 }

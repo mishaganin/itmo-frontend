@@ -13,6 +13,9 @@ export class Article {
   @ApiProperty({ type: String })
     description!: string;
 
+  @ApiProperty({ type: String })
+    imageUrl!: string;
+
   @ApiProperty({ isArray: true, type: () => String })
     tags!: string[];
 
@@ -30,4 +33,7 @@ export class Article {
 
   @ApiProperty({ isArray: true, type: () => ArticleList })
     articleList!: ArticleList[];
+
+  @ApiProperty({ type: Date })
+    createdAt!: string;
 }

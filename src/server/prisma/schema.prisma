@@ -17,34 +17,27 @@ model Account {
   username String  @unique
   email    String  @unique
   password String
-  reader   Reader?
 }
 
 model Reader {
   id                      String         @id @default(uuid())
-  readerFollowToAuthorsId String?  @unique
-  readerFollowToAuthors   ReaderFollowToAuthors? @relation(fields: [readerFollowToAuthorsId], references: [id])
-  accountId               String         @unique
-  account                 Account        @relation(fields: [accountId], references: [id])
+  username                String  @unique
+  email                   String  @unique
+  password                String
+  followedAuthors         Author[]
   articleLists            ArticleList[]
-  author                  Author?
   comments                Comment[]
-  reactions               Json
-}
-
-model ReaderFollowToAuthors {
-  id                String        @id @default(uuid())
-  followedAuthors   Author[]
-  reader            Reader?
 }
 
 model Author {
-  id                       String    @id @default(uuid())
-  articles                 Article[]
-  readerId                 String    @unique
-  reader                   Reader    @relation(fields: [readerId], references: [id])
-  readerFollowToAuthorsIds String[]
-  readerFollowToAuthors    ReaderFollowToAuthors[]
+  id                        String    @id @default(uuid())
+  username                  String  @unique
+  email                     String  @unique
+  password                  String
+  followersReaders          Reader[]
+  articleLists              ArticleList[]
+  comments                  Comment[]
+  articles                  Article[]
 }
 
 model Article {
@@ -58,14 +51,17 @@ model Article {
   author      Author     @relation(fields: [authorId], references: [id])
   comments    Comment[]
   articleList ArticleList[]
+  createdAt   DateTime   @default(now())
 }
 
 model ArticleList {
-  id       String    @id @default(uuid())
+  id       String     @id @default(uuid())
   name     String
   articles Article[]
-  readerId String    @unique
-  reader   Reader    @relation(fields: [readerId], references: [id])
+  readerId String?     @unique
+  reader   Reader?    @relation(fields: [readerId], references: [id])
+  authorId String?    @unique
+  author   Author?    @relation(fields: [authorId], references: [id])
 }
 
 model Reaction {
@@ -76,8 +72,10 @@ model Reaction {
 model Comment {
   id        String @id @default(uuid())
   content   String
-  authorId  String
-  author    Reader @relation(fields: [authorId], references: [id])
-  articleId String @unique
-  article   Article @relation(fields: [articleId], references: [id])
+  readerId  String?
+  reader    Reader? @relation(fields: [readerId], references: [id])
+  authorId  String?    @unique
+  author    Author?    @relation(fields: [authorId], references: [id])
+  articleId String? @unique
+  article   Article? @relation(fields: [articleId], references: [id])
 }

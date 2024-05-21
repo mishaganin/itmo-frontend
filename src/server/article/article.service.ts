@@ -4,6 +4,8 @@ import { IPost } from '@shared/types';
 import { v4 as uuidv4 } from 'uuid';
 import { UpdateArticleDto } from './dto/update-article.dto';
 import { CreateArticleDto } from './dto/create-article.dto';
+import { PrismaService } from '@server/prisma.service';
+import { CreateArticleListDto } from '@server/reader/dto/create-article-list.dto';
 
 const articles1: string[][] = [
   [
@@ -187,8 +189,30 @@ const articles: IPost[] = (() => {
 
 @Injectable()
 export class ArticleService {
+  constructor(private prisma: PrismaService) {}
+
   create(createArticleDto: CreateArticleDto) {
-    return 'This action adds a new article';
+    const { title, description, imageUrl, tags, authorId, createdAt } = createArticleDto;
+    return this.prisma.article.create({
+      data: {
+        id: uuidv4(),
+        title,
+        description,
+        imageUrl,
+        tags,
+        authorId,
+        createdAt,
+        reactions: {
+          create: {},
+        },
+        comments: {
+          create: [],
+        },
+        articleList: {
+          create: [],
+        },
+      }
+    })
   }
 
   findAll() {

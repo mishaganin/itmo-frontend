@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Reader } from '@server/reader/entities/reader.entity';
 import { Article } from '@server/article/entities/article.entity';
+import { Author } from '@server/author/entities/author.entity';
 
 export class Comment {
   @ApiProperty({ type: String })
@@ -10,10 +11,16 @@ export class Comment {
     content!: string;
 
   @ApiProperty({ type: String })
-    authorId!: string;
+    readerId?: string;
 
   @ApiProperty({ type: () => Reader })
-    author!: Reader;
+    reader?: Reader;
+
+  @ApiProperty({ type: String })
+    authorId?: string;
+
+  @ApiProperty({ type: () => Author })
+    author?: Author;
 
   @ApiProperty({ type: String })
     articleId!: string;

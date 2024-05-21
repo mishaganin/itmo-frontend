@@ -8,5 +8,8 @@ export class PublishArticleDto {
     description!: string
 
   @IsString()
+    imageUrl!: string
+
+  @IsString()
     authorId!: string
 }

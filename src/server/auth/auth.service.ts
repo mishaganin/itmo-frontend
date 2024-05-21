@@ -10,7 +10,6 @@ export class AuthService {
   async create(createAccountDto: CreateAccountDto) {
     return this.prisma.account.create({
       data: {
-        id: createAccountDto.id,
         username: createAccountDto.username,
         email: createAccountDto.email,
         password: createAccountDto.password,

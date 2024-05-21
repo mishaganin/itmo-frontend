@@ -1,12 +1,4 @@
-import { IsArray, IsString } from 'class-validator';
+import { CreateAccountDto } from '@server/auth/dto/create-account.dto';
 
-export class CreateAuthorDto {
-  @IsString()
-    readerId?: string
-
-  @IsArray()
-    articleIds!: string[]
-
-  @IsArray()
-    readerFollowToAuthorsIds!: string[];
+export class CreateAuthorDto extends CreateAccountDto {
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { v4 as uuidv4 } from 'uuid';
 import { Article } from '@server/article/entities/article.entity';
-import { mapPrismaArticleToArticle } from '@server/mappers/mapPrismaArticleToArticle';
 import { PrismaService } from '../prisma.service';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
@@ -10,69 +10,28 @@ export class AuthorService {
   constructor(private prisma: PrismaService) {}
 
   async create(createAuthorDto: CreateAuthorDto) {
-    // const articles = await this.prisma.article.findMany({
-    //   include: {
-    //     author: true,
-    //     comments: true,
-    //     articleList: true,
-    //   },
-    // });
-    // return this.prisma.author.create({
-    //   data: {
-    //     readerId: createAuthorDto.readerId,
-    //     readerFollowToAuthorsIds: createAuthorDto.readerFollowToAuthorsIds,
-    //     articles: {
-    //       connect: createAuthorDto.articleIds.map(id => ({ id })),
-    //     },
-    //   }
-    // });
+    const { username, email, password } = createAuthorDto;
 
-    // const author = await this.prisma.author.create({
-    //   data: {
-    //     readerId,
-    //     articles: {
-    //       connect: articles.map(article => ({ id: article.id })),
-    //     },
-    //     readerFollowToAuthors: {
-    //       connect: readerFollowsAuthors.map(reader => ({ id: reader.id })),
-    //     }
-    //   },
-    // });
-    // return this.prisma.author.create({ data: { i}})
-    // return 'Created';
-
-    const { readerId, articleIds, readerFollowToAuthorsIds } = createAuthorDto;
-
-    console.log('hey');
-
-    // Fetch articles and readers by IDs
-    const articles = await this.prisma.article.findMany({
-      where: { id: { in: articleIds } }
-    });
-
-    console.log(articles);
-
-    const readerFollowsAuthors = await this.prisma.reader.findMany({
-      where: { id: { in: readerFollowToAuthorsIds } }
-    });
-
-    console.log(readerFollowsAuthors);
-
-    const author = await this.prisma.author.create({
+    return this.prisma.author.create({
       data: {
-        readerId: readerId ?? '',
-        articles: {
-          connect: articles.map(article => ({ id: article.id })),
+        id: uuidv4(),
+        username,
+        email,
+        password,
+        followersReaders: {
+          create: []
         },
-        readerFollowToAuthors: {
-          connect: readerFollowsAuthors.map(reader => ({ id: reader.id })),
-        }
-      },
+        articleLists: {
+          create: []
+        },
+        comments: {
+          create: []
+        },
+        articles: {
+          create: []
+        },
+      }
     });
-
-    console.log(author);
-
-    return author;
   }
 
   findAll() {
@@ -91,7 +50,7 @@ export class AuthorService {
     return `This action removes a #${id} author`;
   }
 
-  publishArticle(title: string, description: string, authorId: string, tags: string[] = [], reactions: Record<string, number> = {}) {
-    return this.prisma.article.create({ data: { title, description, authorId, tags, reactions }});
+  publishArticle(title: string, description: string, imageUrl: string, authorId: string, tags: string[] = [], reactions: Record<string, string[]> = {}) {
+    return this.prisma.article.create({ data: { title, description, imageUrl, authorId, tags, reactions }});
   }
 }

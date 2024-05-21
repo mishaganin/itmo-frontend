@@ -13,7 +13,4 @@ export class Account {
 
   @ApiProperty({ type: String })
     password!: string;
-
-  @ApiPropertyOptional({ type: () => Reader })
-    reader?: Reader;
 }
