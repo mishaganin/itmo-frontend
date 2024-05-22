@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator';
+import { IsArray, IsString, IsUUID } from 'class-validator';
 
 export class PublishArticleDto {
   @IsString()
@@ -12,4 +12,8 @@ export class PublishArticleDto {
 
   @IsString()
     authorId!: string
+
+  @IsArray()
+  @IsString({ each: true })
+    tags!: string[]
 }

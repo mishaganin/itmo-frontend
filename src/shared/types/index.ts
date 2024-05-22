@@ -1,10 +1,17 @@
+export interface IAuthor {
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+}
+
 export interface IPost {
   id: string;
   title: string;
-  content: string;
-  image: string;
-  author: string; // TODO change to userId: number and then fetch the name of author by his id
-  date: Date;
+  description: string;
+  imageUrl: string;
+  author: IAuthor;
+  createdAt: Date;
 }
 
 export enum HttpStatusCode {

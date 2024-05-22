@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
-import { Article } from '@server/article/entities/article.entity';
 import { PrismaService } from '../prisma.service';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
+import { PublishArticleDto } from '@server/author/dto/publish-article.dto';
 
 @Injectable()
 export class AuthorService {
@@ -50,7 +50,18 @@ export class AuthorService {
     return `This action removes a #${id} author`;
   }
 
-  publishArticle(title: string, description: string, imageUrl: string, authorId: string, tags: string[] = [], reactions: Record<string, string[]> = {}) {
-    return this.prisma.article.create({ data: { title, description, imageUrl, authorId, tags, reactions }});
+  async publishArticle(publishArticleDto: PublishArticleDto) {
+    const { title, description, imageUrl, authorId, tags } = publishArticleDto;
+    return this.prisma.article.create({
+      data: {
+        id: uuidv4(),
+        title,
+        description,
+        imageUrl,
+        authorId,
+        tags,
+        reactions: {}
+      },
+    });
   }
 }

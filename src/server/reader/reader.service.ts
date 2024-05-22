@@ -5,14 +5,15 @@ import { FollowAuthorDto } from '@server/reader/dto/follow-author.dto';
 import { CreateReaderDto } from './dto/create-reader.dto';
 import { UpdateReaderDto } from './dto/update-reader.dto';
 import { CreateArticleListDto } from '@server/reader/dto/create-article-list.dto';
-import { Article } from '@server/article/entities/article.entity';
 import { GetArticleByIdDto } from '@server/reader/dto/get-article-by-id.dto';
 import { OpenProfileDto } from '@server/reader/dto/open-profile.dto';
 import { FindArticlesByContentDto } from '@server/reader/dto/find-articles-by-content.dto';
-import { find } from 'rxjs/src';
 import { SetQuickReactionDto } from '@server/reader/dto/set-quick-reaction.dto';
 import { CommentArticleDto } from '@server/reader/dto/comment-article.dto';
 import { SaveArticleToListDto } from '@server/reader/dto/save-article-to-list.dto';
+import {
+  GetLastArticlesFromFollowedAuthorsDto
+} from '@server/reader/dto/get-last-articles-from-followed-authors.dto';
 
 @Injectable()
 export class ReaderService {
@@ -152,10 +153,25 @@ export class ReaderService {
     });
   }
 
-  async getLastArticlesFromFollowedAuthors(readerId: string) {
+  async getArticles() {
+    return this.prisma.article.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 12,
+      include: {
+        author: true,
+        comments: true,
+      }
+    })
+  }
+
+  async getLastArticlesFromFollowedAuthors(
+    getLastArticlesFromFollowedAuthorsDto: GetLastArticlesFromFollowedAuthorsDto
+  ) {
     const reader = await this.prisma.reader.findUniqueOrThrow({
       where: {
-        id: readerId,
+        id: getLastArticlesFromFollowedAuthorsDto.readerId,
       },
       include: {
         followedAuthors: {
@@ -164,7 +180,10 @@ export class ReaderService {
               orderBy: {
                 createdAt: 'desc',
               },
-              take: 1,
+              take: 2,
+              include: {
+                author: true,
+              },
             },
           },
         },
@@ -196,19 +215,6 @@ export class ReaderService {
         id: getArticleByIdDto.id,
       },
     });
-  }
-
-  async getArticles() {
-    return this.prisma.article.findMany({
-      orderBy: {
-        createdAt: 'desc',
-      },
-      take: 12,
-      include: {
-        author: true,
-        comments: true,
-      }
-    })
   }
 
   async openProfile(openProfileDto: OpenProfileDto) {

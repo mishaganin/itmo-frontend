@@ -8,6 +8,8 @@ import { useAppDispatch } from '@client/store';
 import { addPost } from '@client/store/slices/posts';
 
 import styles from '@shared/styles/pages/post-creation.module.scss';
+import { PublishArticleDto } from '@server/author/dto/publish-article.dto';
+import { fetch } from '@shared/utils/fetch';
 
 const DEFAULT_IMAGE_SRC =
   // eslint-disable-next-line max-len
@@ -30,16 +32,24 @@ const PostCreation = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    const newPost: IPost = {
-      id: uuidv4(),
+    const newPost: PublishArticleDto = {
       title,
-      content,
-      author: 'Misha Ganin',
-      image: DEFAULT_IMAGE_SRC,
-      date: new Date(),
+      description: content,
+      imageUrl: DEFAULT_IMAGE_SRC,
+      tags: ['Development', 'Programming'],
+      authorId: '7c358ec6-2833-4a9c-bc02-a3cf0f3f7d81',
     };
-    if (newPost.title && newPost.content) {
-      dispatch(addPost(newPost));
+    if (newPost.title && newPost.description) {
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newPost)
+      };
+      // dispatch(addPost(newPost));
+      console.log(options);
+      fetch('/author/publish', options);
       router.push('/posts');
     }
   };

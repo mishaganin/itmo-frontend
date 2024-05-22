@@ -10,7 +10,6 @@ export class AuthorController {
 
   @Post()
   async create(@Body() createAuthorDto: CreateAuthorDto) {
-    console.log(createAuthorDto);
     return this.authorService.create(createAuthorDto);
   }
 
@@ -34,13 +33,8 @@ export class AuthorController {
     return this.authorService.remove(+id);
   }
 
-  @Get('/publish')
-  publishArticle(@Body() publishArticleDto: PublishArticleDto) {
-    return this.authorService.publishArticle(
-      publishArticleDto.title,
-      publishArticleDto.description,
-      publishArticleDto.imageUrl,
-      publishArticleDto.authorId
-    );
+  @Post('/publish')
+  async publishArticle(@Body() publishArticleDto: PublishArticleDto) {
+    return this.authorService.publishArticle(publishArticleDto);
   }
 }

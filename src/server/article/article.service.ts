@@ -168,21 +168,21 @@ const articles: IPost[] = (() => {
 
   const posts: IPost[] = [];
 
-  const randomDate = (start: Date, end: Date): Date =>
-    new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-
-  for (let i = 0; i < data.length; i += 1) {
-    const [author, title, content]: string[] = data[i];
-    const post: IPost = {
-      id: uuidv4(),
-      title,
-      content,
-      image: '',
-      author,
-      date: randomDate(new Date(2023, 0, 1), new Date()),
-    };
-    posts.push(post);
-  }
+  // const randomDate = (start: Date, end: Date): Date =>
+  //   new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  //
+  // for (let i = 0; i < data.length; i += 1) {
+  //   const [author, title, content]: string[] = data[i];
+  //   const post: IPost = {
+  //     id: uuidv4(),
+  //     title,
+  //     content,
+  //     image: '',
+  //     author,
+  //     createdAt: randomDate(new Date(2023, 0, 1), new Date()),
+  //   };
+  //   posts.push(post);
+  // }
 
   return posts;
 })();

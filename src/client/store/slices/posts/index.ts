@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { IPost } from '@shared/types';
 import { PostsAPI } from '@client/api/postsAPI';
+import { PublishArticleDto } from '@server/author/dto/publish-article.dto';
 
 export interface PostsState {
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
@@ -25,8 +26,8 @@ export const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    addPost: (state, { payload }: PayloadAction<IPost>) => {
-      state.posts.push(payload);
+    addPost: (state, { payload }: PayloadAction<PublishArticleDto>) => {
+      // state.posts.push(payload);
     },
     deletePost: (state, { payload }: PayloadAction<string>) => {
       state.posts.splice(

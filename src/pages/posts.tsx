@@ -1,11 +1,10 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import useMounted from '@client/hooks/useMounted';
 import Post from '@client/components/Post/Post';
 import Spinner from '@client/components/Spinner/Spinner';
 import Footer from '@client/components/Footer/Footer';
 import FilterBar from '@client/components/FilterBar/FilterBar';
-import { useAppDispatch, useAppSelector } from '@client/store';
-import { fetchPosts } from '@client/store/slices/posts';
+import { useAppDispatch } from '@client/store';
 import { IPost } from '@shared/types';
 
 import styles from '@shared/styles/pages/posts.module.scss';
@@ -16,7 +15,7 @@ type TPostsProps = {
   posts: IPost
 }
 
-const Posts = ({ posts = []}: { posts: IPost[] }): React.JSX.Element => {
+const Posts = ({ posts }: { posts: IPost[] }): React.JSX.Element => {
   const dispatch = useAppDispatch();
   // const { posts, status } = useAppSelector((state) => state.posts);
 
@@ -43,31 +42,6 @@ const Posts = ({ posts = []}: { posts: IPost[] }): React.JSX.Element => {
   //   getPosts();
   // }, [getPosts]);
 
-  const getPosts = () => {
-    console.log(posts);
-    console.log(posts.filter(
-      (post) =>
-        post.title.toLowerCase().includes(filter) ||
-        post.content.toLowerCase().includes(filter)));
-    console.log(posts.filter(
-      (post) =>
-        post.title.toLowerCase().includes(filter) ||
-        post.content.toLowerCase().includes(filter),
-    )
-      .map((post) => (
-        <Post
-          key={post.id}
-          id={post.id}
-          title={post.title}
-          content={post.content}
-          image={post.image}
-          author={post.author}
-          date={post.date}
-        />
-      )));
-    return posts;
-  }
-
   return (
     <div className={styles.posts}>
       <Spinner className={styles.posts__spinner} enabled={false} />
@@ -89,10 +63,10 @@ const Posts = ({ posts = []}: { posts: IPost[] }): React.JSX.Element => {
                   key={post.id}
                   id={post.id}
                   title={post.title}
-                  content={post.content}
-                  image={post.image}
+                  description={post.description}
+                  imageUrl={post.imageUrl}
                   author={post.author}
-                  date={post.date}
+                  createdAt={post.createdAt}
                 />
               ))}
           </div>
@@ -104,7 +78,18 @@ const Posts = ({ posts = []}: { posts: IPost[] }): React.JSX.Element => {
 };
 
 export const getServerSideProps: GetServerSideProps<TPostsProps> = async ( ctx ) => {
-  const posts = await fetch('/article/get-all');
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      readerId: "5de4462a-3376-4c3c-82a0-0dd57c71fc41",
+    })
+  };
+  const posts = await fetch('/reader/get-articles');
+
+  console.log(posts);
 
   return { props: { posts } };
 }

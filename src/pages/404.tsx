@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 // import { HttpStatusCode } from '@shared/types';
 
-// import '@client/ErrorBoundary.scss';
+import styles from '@shared/styles/pages/404.module.scss';
 
 const Error = () => {
   // const error = useRouteError();
@@ -27,13 +27,13 @@ const Error = () => {
     //   }
     // }
 
-    return <h1 className="error-boundary__title">{errorMessage}</h1>;
+    return <h1 className={styles['error-boundary__title']}>{errorMessage}</h1>;
   };
 
   return (
-    <div className="error-boundary">
+    <div className={styles['error-boundary']}>
       {renderErrorMessage()}
-      <Link className="error-boundary__link" href="/">
+      <Link className={styles['error-boundary__link']} href="/">
         <span>Go back to home page</span>
       </Link>
     </div>

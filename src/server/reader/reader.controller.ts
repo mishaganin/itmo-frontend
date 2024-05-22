@@ -5,12 +5,14 @@ import { UpdateReaderDto } from './dto/update-reader.dto';
 import { FollowAuthorDto } from '@server/reader/dto/follow-author.dto';
 import { GetArticleByIdDto } from '@server/reader/dto/get-article-by-id.dto';
 import { OpenProfileDto } from '@server/reader/dto/open-profile.dto';
-import { CreateArticleDto } from '@server/article/dto/create-article.dto';
 import { CreateArticleListDto } from '@server/reader/dto/create-article-list.dto';
 import { FindArticlesByContentDto } from '@server/reader/dto/find-articles-by-content.dto';
 import { SetQuickReactionDto } from '@server/reader/dto/set-quick-reaction.dto';
 import { CommentArticleDto } from '@server/reader/dto/comment-article.dto';
 import { SaveArticleToListDto } from '@server/reader/dto/save-article-to-list.dto';
+import {
+  GetLastArticlesFromFollowedAuthorsDto
+} from '@server/reader/dto/get-last-articles-from-followed-authors.dto';
 
 @Controller('reader')
 export class ReaderController {
@@ -24,11 +26,6 @@ export class ReaderController {
   @Get()
   findAll() {
     return this.readerService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.readerService.findOne(+id);
   }
 
   @Patch(':id')
@@ -66,7 +63,7 @@ export class ReaderController {
     return this.readerService.commentArticle(commentArticleDto);
   }
 
-  @Post('/comment-article')
+  @Post('/save-article-to-list')
   async saveArticleToList(saveArticleToListDto: SaveArticleToListDto) {
     return this.readerService.saveArticleToList(saveArticleToListDto);
   }
@@ -74,6 +71,20 @@ export class ReaderController {
   @Post('create-list')
   async createList(@Body() createArticleListDto: CreateArticleListDto) {
     return this.readerService.createList(createArticleListDto);
+  }
+
+  @Get('get-articles')
+  async getArticles() {
+    return this.readerService.getArticles();
+  }
+
+  @Post('get-articles-from-followed-authors')
+  async getLastArticlesFromFollowedAuthors(
+    @Body() getLastArticlesFromFollowedAuthorsDto: GetLastArticlesFromFollowedAuthorsDto
+  ) {
+    return this.readerService.getLastArticlesFromFollowedAuthors(
+      getLastArticlesFromFollowedAuthorsDto
+    );
   }
 
   @Post('find-articles-by-content')
