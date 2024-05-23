@@ -1,23 +1,81 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
+
+// generator prismaClassGenerator {
+//   provider = "prisma-class-generator"
+//   dryRun = false
+// }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+model Account {
+  id       String  @id @default(uuid())
+  username String  @unique
+  email    String  @unique
+  password String
+}
+
+model Reader {
+  id                      String         @id @default(uuid())
+  username                String  @unique
+  email                   String  @unique
+  password                String
+  followedAuthors         Author[]
+  articleLists            ArticleList[]
+  comments                Comment[]
+}
+
+model Author {
+  id                        String    @id @default(uuid())
+  username                  String  @unique
+  email                     String  @unique
+  password                  String
+  followersReaders          Reader[]
+  articleLists              ArticleList[]
+  comments                  Comment[]
+  articles                  Article[]
+}
+
 model Article {
-  id        String      @default(uuid()) @id
-  title     String      @default("")
-  description   String    @default("")
-  tags   String[]     @default([])
-  authorId  Int
-  commentIds   Int[]     @default([])
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  imageUrl    String
+  tags        String[]
+  reactions   Json
+  authorId    String
+  author      Author     @relation(fields: [authorId], references: [id])
+  comments    Comment[]
+  articleList ArticleList[]
+  createdAt   DateTime   @default(now())
+}
+
+model ArticleList {
+  id       String     @id @default(uuid())
+  name     String
+  articles Article[]
+  readerId String?     @unique
+  reader   Reader?    @relation(fields: [readerId], references: [id])
+  authorId String?    @unique
+  author   Author?    @relation(fields: [authorId], references: [id])
+}
+
+model Reaction {
+  id        String @id @default(uuid())
+  icon      String
+}
+
+model Comment {
+  id        String @id @default(uuid())
+  content   String
+  readerId  String?
+  reader    Reader? @relation(fields: [readerId], references: [id])
+  authorId  String?    @unique
+  author    Author?    @relation(fields: [authorId], references: [id])
+  articleId String? @unique
+  article   Article? @relation(fields: [articleId], references: [id])
 }
