@@ -1,18 +1,21 @@
 import React, { MouseEvent } from 'react';
-import { redirect } from 'next/navigation';
 import showDate from '@shared/utils/showDate';
 import { IPost } from '@shared/types';
 
+import clsx from 'clsx';
+import { useRouter } from 'next/router';
 import styles from './Post.module.scss';
 
 const Post = ({ id, title, description, imageUrl, author, createdAt }: IPost): React.JSX.Element => {
+  const router = useRouter();
+
   const handlePostClick = () => {
-    redirect(`/posts/${id}`);
+    router.push(`/posts/${id}`);
   };
 
   const handleAuthorClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    redirect(`/accounts/${id}`);
+    router.push(`/profile/${author.id}`);
   };
 
   return (
@@ -26,7 +29,7 @@ const Post = ({ id, title, description, imageUrl, author, createdAt }: IPost): R
       <div className={styles.post__info}>
         <div className={styles.post__author}>
           by{' '}
-          <button className={styles.post__link} type="button" onClick={handleAuthorClick}>
+          <button className={clsx(styles.post__link, styles.link)} type="button" onClick={handleAuthorClick}>
             {author.username}
           </button>
         </div>

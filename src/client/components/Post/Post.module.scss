@@ -58,3 +58,35 @@
     }
   }
 }
+
+.link {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+
+  &:hover {
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      border-bottom: 2px solid rgba(245, 218, 71, 0.66);
+    }
+  }
+
+  &.active {
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      border-bottom: 2px solid #f5da47;
+    }
+  }
+}

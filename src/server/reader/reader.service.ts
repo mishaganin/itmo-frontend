@@ -2,8 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '@server/prisma.service';
 import { v4 as uuidv4 } from 'uuid';
 import { FollowAuthorDto } from '@server/reader/dto/follow-author.dto';
-import { CreateReaderDto } from './dto/create-reader.dto';
-import { UpdateReaderDto } from './dto/update-reader.dto';
 import { CreateArticleListDto } from '@server/reader/dto/create-article-list.dto';
 import { GetArticleByIdDto } from '@server/reader/dto/get-article-by-id.dto';
 import { OpenProfileDto } from '@server/reader/dto/open-profile.dto';
@@ -14,6 +12,8 @@ import { SaveArticleToListDto } from '@server/reader/dto/save-article-to-list.dt
 import {
   GetLastArticlesFromFollowedAuthorsDto
 } from '@server/reader/dto/get-last-articles-from-followed-authors.dto';
+import { UpdateReaderDto } from './dto/update-reader.dto';
+import { CreateReaderDto } from './dto/create-reader.dto';
 
 @Injectable()
 export class ReaderService {

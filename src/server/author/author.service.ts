@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
+import { PublishArticleDto } from '@server/author/dto/publish-article.dto';
 import { PrismaService } from '../prisma.service';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
-import { PublishArticleDto } from '@server/author/dto/publish-article.dto';
 
 @Injectable()
 export class AuthorService {
@@ -19,23 +19,23 @@ export class AuthorService {
         email,
         password,
         followersReaders: {
-          create: []
+          create: [],
         },
         articleLists: {
-          create: []
+          create: [],
         },
         comments: {
-          create: []
+          create: [],
         },
         articles: {
-          create: []
+          create: [],
         },
-      }
+      },
     });
   }
 
   findAll() {
-    return 'This action returns all author';
+    return this.prisma.author.findMany();
   }
 
   findOne(id: number) {
@@ -60,7 +60,7 @@ export class AuthorService {
         imageUrl,
         authorId,
         tags,
-        reactions: {}
+        reactions: {},
       },
     });
   }

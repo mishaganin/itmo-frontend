@@ -1,8 +1,8 @@
 import React from 'react';
 import { SpinnerCircular } from 'spinners-react';
 
-import styles from './Spinner.module.scss';
 import clsx from 'clsx';
+import styles from './Spinner.module.scss';
 
 const Spinner = ({ className, ...props }): JSX.Element => (
   <SpinnerCircular

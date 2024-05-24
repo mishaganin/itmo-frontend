@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { map, toArray } from 'rxjs';
+import { CreateArticleListDto } from '@server/reader/dto/create-article-list.dto';
 import { ArticleService } from './article.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
-import { CreateArticleListDto } from '@server/reader/dto/create-article-list.dto';
 
 @Controller('article')
 export class ArticleController {

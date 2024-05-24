@@ -1,7 +1,4 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ReaderService } from './reader.service';
-import { CreateReaderDto } from './dto/create-reader.dto';
-import { UpdateReaderDto } from './dto/update-reader.dto';
 import { FollowAuthorDto } from '@server/reader/dto/follow-author.dto';
 import { GetArticleByIdDto } from '@server/reader/dto/get-article-by-id.dto';
 import { OpenProfileDto } from '@server/reader/dto/open-profile.dto';
@@ -10,9 +7,11 @@ import { FindArticlesByContentDto } from '@server/reader/dto/find-articles-by-co
 import { SetQuickReactionDto } from '@server/reader/dto/set-quick-reaction.dto';
 import { CommentArticleDto } from '@server/reader/dto/comment-article.dto';
 import { SaveArticleToListDto } from '@server/reader/dto/save-article-to-list.dto';
-import {
-  GetLastArticlesFromFollowedAuthorsDto
-} from '@server/reader/dto/get-last-articles-from-followed-authors.dto';
+import { GetLastArticlesFromFollowedAuthorsDto } from '@server/reader/dto/get-last-articles-from-followed-authors.dto';
+import { UpdateReaderDto } from './dto/update-reader.dto';
+import { CreateReaderDto } from './dto/create-reader.dto';
+import { ReaderService } from './reader.service';
+import { Public } from '@shared/consts';
 
 @Controller('reader')
 export class ReaderController {
@@ -73,17 +72,19 @@ export class ReaderController {
     return this.readerService.createList(createArticleListDto);
   }
 
+  @Public()
   @Get('get-articles')
   async getArticles() {
     return this.readerService.getArticles();
   }
 
+  @Public()
   @Post('get-articles-from-followed-authors')
   async getLastArticlesFromFollowedAuthors(
-    @Body() getLastArticlesFromFollowedAuthorsDto: GetLastArticlesFromFollowedAuthorsDto
+    @Body() getLastArticlesFromFollowedAuthorsDto: GetLastArticlesFromFollowedAuthorsDto,
   ) {
     return this.readerService.getLastArticlesFromFollowedAuthors(
-      getLastArticlesFromFollowedAuthorsDto
+      getLastArticlesFromFollowedAuthorsDto,
     );
   }
 

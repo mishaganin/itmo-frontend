@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
+import { GetServerSideProps } from 'next';
 import useMounted from '@client/hooks/useMounted';
 import Post from '@client/components/Post/Post';
 import Spinner from '@client/components/Spinner/Spinner';
@@ -6,10 +7,9 @@ import Footer from '@client/components/Footer/Footer';
 import FilterBar from '@client/components/FilterBar/FilterBar';
 import { useAppDispatch } from '@client/store';
 import { IPost } from '@shared/types';
+import { fetch } from '@shared/utils/fetch';
 
 import styles from '@shared/styles/pages/posts.module.scss';
-import { GetServerSideProps } from 'next';
-import { fetch } from '@shared/utils/fetch';
 
 type TPostsProps = {
   posts: IPost
@@ -84,12 +84,10 @@ export const getServerSideProps: GetServerSideProps<TPostsProps> = async ( ctx )
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      readerId: "5de4462a-3376-4c3c-82a0-0dd57c71fc41",
+      readerId: '5de4462a-3376-4c3c-82a0-0dd57c71fc41',
     })
   };
   const posts = await fetch('/reader/get-articles');
-
-  console.log(posts);
 
   return { props: { posts } };
 }

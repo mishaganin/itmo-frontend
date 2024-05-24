@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { PublishArticleDto } from '@server/author/dto/publish-article.dto';
 import { AuthorService } from './author.service';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
+import { Roles } from '@server/decorators/roles.decorator';
+import { Role } from '@shared/enums/role.enum';
 
 @Controller('author')
 export class AuthorController {
@@ -34,6 +36,7 @@ export class AuthorController {
   }
 
   @Post('/publish')
+  @Roles(Role.Admin)
   async publishArticle(@Body() publishArticleDto: PublishArticleDto) {
     return this.authorService.publishArticle(publishArticleDto);
   }
