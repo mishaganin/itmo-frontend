@@ -4,18 +4,15 @@ import { Account } from '@server/auth/entities/account.entity';
 import { ReaderFollowToAuthors } from './reader-follow-to-authors.entity';
 
 export class Reader extends Account {
-  @ApiProperty({ type: 'uuid' })
-    id!: string;
-
   @ApiProperty({ nullable: true, type: String })
-    readerFollowToAuthorsId!: string | null;
+  readerFollowToAuthorsId!: string | null;
 
   @ApiProperty({ nullable: true, type: () => ReaderFollowToAuthors })
-    readerFollowToAuthors!: ReaderFollowToAuthors;
+  readerFollowToAuthors!: ReaderFollowToAuthors;
 
   @ApiProperty({ isArray: true, type: () => ArticleList })
-    articleLists!: ArticleList[];
+  articleLists!: ArticleList[];
 
   @ApiProperty({ isArray: true, type: () => Comment })
-    comments!: Comment[];
+  comments!: Comment[];
 }

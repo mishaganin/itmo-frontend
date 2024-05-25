@@ -21,6 +21,7 @@ import { AuthorModule } from './author/author.module';
 import { ArticleModule } from './article/article.module';
 import { AuthModule } from './auth/auth.module';
 import { RolesGuard } from '@server/guards/roles.guard';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { RolesGuard } from '@server/guards/roles.guard';
     ReaderService,
     ArticleService,
     UsersService,
+    JwtService,
     {
       provide: APP_GUARD,
       useClass: RolesGuard,

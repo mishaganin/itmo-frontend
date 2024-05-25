@@ -44,12 +44,12 @@ export class AuthService {
     return `This action removes a #${id} auth`;
   }
 
-  async login(username: string, pass: string) {
-    const user = await this.usersService.findOne(username);
+  async login(email: string, pass: string) {
+    const user = await this.usersService.findOne(email);
     if (user?.password !== pass) {
       throw new UnauthorizedException();
     }
-    const payload = { sub: user.id, username: user.username };
+    const payload = { email: user.email, roles: user.roles };
     return this.jwtService.signAsync(payload);
   }
 

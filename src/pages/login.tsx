@@ -36,24 +36,14 @@ const Login = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        username: formValues.username,
         email: formValues.email,
         password: formValues.password,
       }),
     };
     const response = await fetch('/auth/sign-in', options);
-    // document.cookie('token', token, { httpOnly: true });
-    if (response.ok) {
-      router.push('/posts');
-    }
+    router.push('/');
   };
 
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors, formValues, isSubmit]);
   const validate = (values) => {
     const errors: IFormValues = {
       email: '',

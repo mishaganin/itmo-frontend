@@ -5,16 +5,16 @@ import { PrismaService } from '@server/prisma.service';
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
-  findOne(username: string) {
+  findOne(email: string) {
     return (
       this.prisma.reader.findUnique({
         where: {
-          username,
+          email,
         },
       }) ||
       this.prisma.author.findUnique({
         where: {
-          username,
+          email,
         },
       })
     );

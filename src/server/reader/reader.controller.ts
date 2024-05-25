@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { FollowAuthorDto } from '@server/reader/dto/follow-author.dto';
 import { GetArticleByIdDto } from '@server/reader/dto/get-article-by-id.dto';
 import { OpenProfileDto } from '@server/reader/dto/open-profile.dto';
@@ -13,35 +13,50 @@ import { UpdateReaderDto } from './dto/update-reader.dto';
 import { CreateReaderDto } from './dto/create-reader.dto';
 import { ReaderService } from './reader.service';
 import { AuthGuard } from '@server/guards/auth.guard';
+import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Role } from '@shared/enums/role.enum';
+import { Roles } from '@server/decorators/roles.decorator';
 
 @Controller('reader')
 export class ReaderController {
   constructor(private readonly readerService: ReaderService) {}
 
+  @ApiOperation({ summary: 'Create reader' })
+  @ApiResponse({ status: 201, description: 'Reader created successfully' })
+  @ApiBody({ type: CreateReaderDto })
   @UseGuards(AuthGuard)
+  @Public()
   @Post()
   create(@Body() createReaderDto: CreateReaderDto) {
     return this.readerService.create(createReaderDto);
   }
 
+  @ApiOperation({ summary: 'Get all readers' })
+  @ApiResponse({ status: 200, description: 'Successful retrieval of readers' })
   @UseGuards(AuthGuard)
   @Get()
   findAll() {
     return this.readerService.findAll();
   }
 
+  @ApiOperation({ summary: 'Update reader' })
+  @ApiResponse({ status: 200, description: 'Successful update of reader' })
   @UseGuards(AuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateReaderDto: UpdateReaderDto) {
     return this.readerService.update(+id, updateReaderDto);
   }
 
+  @ApiOperation({ summary: 'Remove reader' })
+  @ApiResponse({ status: 200, description: 'Successful removal of reader' })
   @UseGuards(AuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.readerService.remove(+id);
   }
 
+  @ApiOperation({ summary: 'Open profile' })
+  @ApiResponse({ status: 200, description: 'Successful removal of reader' })
   @UseGuards(AuthGuard)
   @Post('/open-profile')
   async openProfile(openProfileDto: OpenProfileDto) {
@@ -84,15 +99,15 @@ export class ReaderController {
     return this.readerService.createList(createArticleListDto);
   }
 
-  @UseGuards(AuthGuard)
   @Public()
+  @Roles(Role.Reader)
   @Get('get-articles')
   async getArticles() {
     return this.readerService.getArticles();
   }
 
   @UseGuards(AuthGuard)
-  @Public()
+  @Roles(Role.Reader)
   @Post('get-articles-from-followed-authors')
   async getLastArticlesFromFollowedAuthors(
     @Body() getLastArticlesFromFollowedAuthorsDto: GetLastArticlesFromFollowedAuthorsDto,

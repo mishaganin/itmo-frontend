@@ -1,8 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Role } from '@shared/enums/role.enum';
+import { Length } from 'class-validator';
 
 export class Account {
-  @ApiProperty({ type: String })
+  @ApiProperty({ type: 'uuid' })
   id!: string;
 
   @ApiProperty({ type: String })
@@ -12,6 +13,7 @@ export class Account {
   email!: string;
 
   @ApiProperty({ type: String })
+  @Length(4, 100)
   password!: string;
 
   @ApiProperty({ isArray: true, type: () => String })

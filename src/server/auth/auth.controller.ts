@@ -9,11 +9,17 @@ import {
   HttpCode,
   HttpStatus,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { Response } from 'express';
+import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { SignInDto } from '@server/auth/dto/sign-in.dto';
+import { AuthGuard } from '@server/guards/auth.guard';
+import { Roles } from '@server/decorators/roles.decorator';
+import { Role } from '@shared/enums/role.enum';
 
 @Controller('auth')
 export class AuthController {
@@ -44,11 +50,17 @@ export class AuthController {
     return this.authService.remove(+id);
   }
 
+  @ApiOperation({ summary: 'Login user' })
+  @ApiResponse({ status: 200, description: 'Login successful' })
+  @ApiResponse({ status: 401, description: 'Invalid credentials' })
+  @ApiBody({ type: SignInDto })
+  // @UseGuards(AuthGuard)
+  @Roles(Role.Reader)
   @HttpCode(HttpStatus.OK)
   @Post('sign-in')
-  async login(@Body() signInDto: Record<string, any>, @Res({ passthrough: true }) res: Response) {
-    const accessToken = await this.authService.login(signInDto.username, signInDto.password);
-    res.cookie('access_token', accessToken, { httpOnly: true, secure: true }); // Adjust options as needed
+  async login(@Body() signInDto: SignInDto, @Res({ passthrough: true }) res: Response) {
+    const accessToken = await this.authService.login(signInDto.email, signInDto.password);
+    res.cookie('access_token', accessToken, { httpOnly: true, secure: true });
     return res.send({ message: 'Login successful' });
   }
 

@@ -43,7 +43,7 @@ export class AuthorController {
 
   @UseGuards(AuthGuard)
   @Post('/publish')
-  @Roles(Role.Admin)
+  @Roles(Role.Author)
   async publishArticle(@Body() publishArticleDto: PublishArticleDto) {
     return this.authorService.publishArticle(publishArticleDto);
   }

@@ -17,6 +17,7 @@ model Account {
   username String  @unique
   email    String  @unique
   password String
+  roles    String[]
 }
 
 model Reader {
@@ -24,6 +25,7 @@ model Reader {
   username                String  @unique
   email                   String  @unique
   password                String
+  roles                   String[]
   followedAuthors         Author[]
   articleLists            ArticleList[]
   comments                Comment[]
@@ -34,6 +36,7 @@ model Author {
   username                  String  @unique
   email                     String  @unique
   password                  String
+  roles                     String[]
   followersReaders          Reader[]
   articleLists              ArticleList[]
   comments                  Comment[]
