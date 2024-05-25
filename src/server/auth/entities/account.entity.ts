@@ -1,16 +1,19 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Reader } from '@server/reader/entities/reader.entity';
+import { ApiProperty } from '@nestjs/swagger';
+import { Role } from '@shared/enums/role.enum';
 
 export class Account {
   @ApiProperty({ type: String })
-    id!: string;
+  id!: string;
 
   @ApiProperty({ type: String })
-    username!: string;
+  username!: string;
 
   @ApiProperty({ type: String })
-    email!: string;
+  email!: string;
 
   @ApiProperty({ type: String })
-    password!: string;
+  password!: string;
+
+  @ApiProperty({ isArray: true, type: () => String })
+  roles!: Role[];
 }

@@ -48,10 +48,6 @@ import { RolesGuard } from '@server/guards/roles.guard';
     UsersService,
     {
       provide: APP_GUARD,
-      useClass: AuthGuard,
-    },
-    {
-      provide: APP_GUARD,
       useClass: RolesGuard,
     },
   ],

@@ -12,8 +12,8 @@ import { fetch } from '@shared/utils/fetch';
 import styles from '@shared/styles/pages/posts.module.scss';
 
 type TPostsProps = {
-  posts: IPost
-}
+  posts: IPost;
+};
 
 const Posts = ({ posts }: { posts: IPost[] }): React.JSX.Element => {
   const dispatch = useAppDispatch();
@@ -56,7 +56,7 @@ const Posts = ({ posts }: { posts: IPost[] }): React.JSX.Element => {
               .filter(
                 (post) =>
                   post.title.toLowerCase().includes(filter) ||
-                  post.content.toLowerCase().includes(filter),
+                  post.description.toLowerCase().includes(filter),
               )
               .map((post) => (
                 <Post
@@ -77,19 +77,19 @@ const Posts = ({ posts }: { posts: IPost[] }): React.JSX.Element => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<TPostsProps> = async ( ctx ) => {
+export const getServerSideProps: GetServerSideProps<TPostsProps> = async (ctx) => {
   const options = {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       readerId: '5de4462a-3376-4c3c-82a0-0dd57c71fc41',
-    })
+    }),
   };
   const posts = await fetch('/reader/get-articles');
 
   return { props: { posts } };
-}
+};
 
 export default Posts;

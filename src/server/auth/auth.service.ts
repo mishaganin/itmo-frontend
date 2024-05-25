@@ -4,6 +4,9 @@ import { UsersService } from '@server/users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { CreateAccountDto } from './dto/create-account.dto';
+import { AuthorService } from '@server/author/author.service';
+import { ReaderService } from '@server/reader/reader.service';
+import { sign } from 'jsonwebtoken';
 
 @Injectable()
 export class AuthService {
@@ -11,6 +14,8 @@ export class AuthService {
     private prisma: PrismaService,
     private usersService: UsersService,
     private jwtService: JwtService,
+    private authorService: AuthorService,
+    private readerService: ReaderService,
   ) {}
 
   async create(createAccountDto: CreateAccountDto) {
@@ -39,14 +44,21 @@ export class AuthService {
     return `This action removes a #${id} auth`;
   }
 
-  async login(username: string, pass: string): Promise<any> {
+  async login(username: string, pass: string) {
     const user = await this.usersService.findOne(username);
     if (user?.password !== pass) {
       throw new UnauthorizedException();
     }
     const payload = { sub: user.id, username: user.username };
-    return {
-      access_token: await this.jwtService.signAsync(payload),
-    };
+    return this.jwtService.signAsync(payload);
+  }
+
+  register(signUpDto: CreateAccountDto) {
+    const { isAuthor } = signUpDto;
+    if (isAuthor) {
+      return this.authorService.create(signUpDto);
+    }
+
+    return this.readerService.create(signUpDto);
   }
 }
