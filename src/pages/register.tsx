@@ -24,7 +24,12 @@ const Register = () => {
     isAuthor: false,
   };
   const [formValues, setFormValues] = useState<IFormValues>(initialValues);
-  const [formErrors, setFormErrors] = useState<IFormValues>({});
+  const [formErrors, setFormErrors] = useState<Omit<IFormValues, 'isAuthor'>>({
+    confirmPassword: '',
+    email: '',
+    password: '',
+    username: '',
+  });
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
@@ -53,7 +58,7 @@ const Register = () => {
   };
 
   const validate = (values) => {
-    const errors: IFormValues = {
+    const errors: Omit<IFormValues, 'isAuthor'> = {
       username: '',
       email: '',
       password: '',
@@ -132,7 +137,7 @@ const Register = () => {
               type="checkbox"
               name="isAuthor"
               placeholder="Is author"
-              value={formValues.isAuthor}
+              checked={formValues.isAuthor}
               onChange={handleChange}
             />
           </div>

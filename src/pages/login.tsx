@@ -18,7 +18,7 @@ const Login = () => {
     password: '',
   };
   const [formValues, setFormValues] = useState<IFormValues>(initialValues);
-  const [formErrors, setFormErrors] = useState<IFormValues>({});
+  const [formErrors, setFormErrors] = useState<IFormValues>({ email: '', password: '' });
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
