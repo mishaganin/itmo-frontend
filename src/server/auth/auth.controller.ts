@@ -56,7 +56,7 @@ export class AuthController {
   @ApiResponse({ status: 401, description: 'Invalid credentials' })
   @ApiBody({ type: SignInDto })
   // @UseGuards(AuthGuard)
-  @Roles(Role.Reader)
+  // @Roles(Role.Reader)
   @HttpCode(HttpStatus.OK)
   @Post('sign-in')
   async login(@Body() signInDto: SignInDto, @Res({ passthrough: true }) res: Response) {
