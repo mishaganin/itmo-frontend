@@ -1,11 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { PORT } from '@shared/env';
 import { RenderService } from 'nest-next';
-import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { XmlInterceptor } from '@server/interceptors/xmlInterceptors';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.useGlobalInterceptors(new XmlInterceptor());
   const renderService = app.get(RenderService);
   renderService.setErrorHandler(async (err, _req, res) => {
     if (res.statusCode !== 404) res.send(err.response);

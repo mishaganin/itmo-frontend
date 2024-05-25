@@ -1,4 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { FollowAuthorDto } from '@server/reader/dto/follow-author.dto';
 import { GetArticleByIdDto } from '@server/reader/dto/get-article-by-id.dto';
 import { OpenProfileDto } from '@server/reader/dto/open-profile.dto';
@@ -16,6 +26,7 @@ import { AuthGuard } from '@server/guards/auth.guard';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Role } from '@shared/enums/role.enum';
 import { Roles } from '@server/decorators/roles.decorator';
+import { XmlInterceptor } from '@server/interceptors/xmlInterceptors';
 
 @Controller('reader')
 export class ReaderController {
@@ -99,6 +110,7 @@ export class ReaderController {
     return this.readerService.createList(createArticleListDto);
   }
 
+  @UseInterceptors(new XmlInterceptor())
   @Public()
   @Roles(Role.Reader)
   @Get('get-articles')

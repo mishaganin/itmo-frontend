@@ -48,6 +48,8 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.33.2",
     "express": "^4.19.2",
+    "fast-xml-parser": "^4.4.0",
+    "js2xmlparser": "^5.0.0",
     "nest-next": "^10.1.0",
     "next": "=13.4.2",
     "next-redux-wrapper": "^8.1.0",
@@ -65,7 +67,9 @@
     "spinners-react": "^1.0.7",
     "typeorm": "^0.3.20",
     "uuid": "^9.0.1",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-node-externals": "^3.0.0",
+    "xml-js": "^1.6.11",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
