@@ -23,11 +23,12 @@ import { UpdateReaderDto } from './dto/update-reader.dto';
 import { CreateReaderDto } from './dto/create-reader.dto';
 import { ReaderService } from './reader.service';
 import { AuthGuard } from '@server/guards/auth.guard';
-import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Role } from '@shared/enums/role.enum';
 import { Roles } from '@server/decorators/roles.decorator';
 import { XmlInterceptor } from '@server/interceptors/xmlInterceptors';
 
+@ApiTags('reader')
 @Controller('reader')
 export class ReaderController {
   constructor(private readonly readerService: ReaderService) {}

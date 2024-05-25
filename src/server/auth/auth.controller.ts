@@ -15,12 +15,13 @@ import { AuthService } from './auth.service';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { Response } from 'express';
-import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SignInDto } from '@server/auth/dto/sign-in.dto';
 import { AuthGuard } from '@server/guards/auth.guard';
 import { Roles } from '@server/decorators/roles.decorator';
 import { Role } from '@shared/enums/role.enum';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

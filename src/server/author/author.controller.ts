@@ -6,7 +6,9 @@ import { UpdateAuthorDto } from './dto/update-author.dto';
 import { Roles } from '@server/decorators/roles.decorator';
 import { Role } from '@shared/enums/role.enum';
 import { AuthGuard } from '@server/guards/auth.guard';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('author')
 @Controller('author')
 export class AuthorController {
   constructor(private readonly authorService: AuthorService) {}
