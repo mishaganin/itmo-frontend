@@ -7,7 +7,7 @@ const envAwareFetch = async (url: string, options?: Record<string, unknown>) => 
     isServer && url.startsWith('/') ? `http://localhost:${PORT}${url}` : url;
 
   const res = await fetch(fetchUrl, options);
-  return await res.json();
+  return res.json();
 };
 
 export { envAwareFetch as fetch };

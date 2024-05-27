@@ -17,6 +17,6 @@ const App: FC<AppProps> = ({ Component, ...rest }) => {
       </Layout>
     </Provider>
   );
-}
+};
 
 export default App;

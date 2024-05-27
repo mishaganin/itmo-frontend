@@ -1,9 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '@server/prisma.service';
 import { v4 as uuidv4 } from 'uuid';
 import { FollowAuthorDto } from '@server/reader/dto/follow-author.dto';
-import { CreateReaderDto } from './dto/create-reader.dto';
-import { UpdateReaderDto } from './dto/update-reader.dto';
 import { CreateArticleListDto } from '@server/reader/dto/create-article-list.dto';
 import { GetArticleByIdDto } from '@server/reader/dto/get-article-by-id.dto';
 import { OpenProfileDto } from '@server/reader/dto/open-profile.dto';
@@ -11,33 +9,40 @@ import { FindArticlesByContentDto } from '@server/reader/dto/find-articles-by-co
 import { SetQuickReactionDto } from '@server/reader/dto/set-quick-reaction.dto';
 import { CommentArticleDto } from '@server/reader/dto/comment-article.dto';
 import { SaveArticleToListDto } from '@server/reader/dto/save-article-to-list.dto';
-import {
-  GetLastArticlesFromFollowedAuthorsDto
-} from '@server/reader/dto/get-last-articles-from-followed-authors.dto';
+import { GetLastArticlesFromFollowedAuthorsDto } from '@server/reader/dto/get-last-articles-from-followed-authors.dto';
+import { UpdateReaderDto } from './dto/update-reader.dto';
+import { CreateReaderDto } from './dto/create-reader.dto';
+import { Role } from '@shared/enums/role.enum';
 
 @Injectable()
 export class ReaderService {
   constructor(private prisma: PrismaService) {}
 
   async create(createReaderDto: CreateReaderDto) {
-    const { username, email, password  } = createReaderDto;
+    const { username, email, password } = createReaderDto;
+
+    if (password.length < 4 || password.length > 100) {
+      throw new BadRequestException('Validation failed');
+    }
+
     return this.prisma.reader.create({
       data: {
         id: uuidv4(),
         username,
         email,
         password,
+        roles: [Role.Reader],
         followedAuthors: {
-          create: []
+          create: [],
         },
         articleLists: {
-          create: []
+          create: [],
         },
         comments: {
-          create: []
+          create: [],
         },
-      }
-    })
+      },
+    });
   }
 
   findAll() {
@@ -66,12 +71,12 @@ export class ReaderService {
     const { readerId, authorId } = followAuthorDto;
     return this.prisma.reader.update({
       where: {
-        id: readerId
+        id: readerId,
       },
       data: {
         followedAuthors: {
           connect: {
-            id: authorId
+            id: authorId,
           },
         },
       },
@@ -162,12 +167,12 @@ export class ReaderService {
       include: {
         author: true,
         comments: true,
-      }
-    })
+      },
+    });
   }
 
   async getLastArticlesFromFollowedAuthors(
-    getLastArticlesFromFollowedAuthorsDto: GetLastArticlesFromFollowedAuthorsDto
+    getLastArticlesFromFollowedAuthorsDto: GetLastArticlesFromFollowedAuthorsDto,
   ) {
     const reader = await this.prisma.reader.findUniqueOrThrow({
       where: {

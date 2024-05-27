@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { of } from 'rxjs';
 import { IPost } from '@shared/types';
 import { v4 as uuidv4 } from 'uuid';
-import { UpdateArticleDto } from './dto/update-article.dto';
-import { CreateArticleDto } from './dto/create-article.dto';
 import { PrismaService } from '@server/prisma.service';
 import { CreateArticleListDto } from '@server/reader/dto/create-article-list.dto';
+import { UpdateArticleDto } from './dto/update-article.dto';
+import { CreateArticleDto } from './dto/create-article.dto';
 
 const articles1: string[][] = [
   [

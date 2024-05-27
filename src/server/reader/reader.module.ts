@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
+import { PrismaService } from '@server/prisma.service';
 import { ReaderService } from './reader.service';
 import { ReaderController } from './reader.controller';
-import { PrismaService } from '@server/prisma.service';
 
 @Module({
   controllers: [ReaderController],

@@ -11,22 +11,22 @@ import { Type } from 'class-transformer';
 
 export class CreateArticleDto {
   @IsString()
-  title!: string;
+    title!: string;
 
   @IsString()
-  description!: string;
+    description!: string;
 
   @IsUrl()
-  imageUrl!: string;
+    imageUrl!: string;
 
   @IsArray()
   @Type(() => String)
-  tags!: string[];
+    tags!: string[];
 
   @IsString()
   @IsUUID('4')
-  authorId!: string;
+    authorId!: string;
 
   @IsDate()
-  createdAt!: Date;
+    createdAt!: Date;
 }

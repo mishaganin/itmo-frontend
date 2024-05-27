@@ -1,6 +1,7 @@
 import { AppService } from './app.service';
+
 export declare class AppController {
-    private readonly appService;
-    constructor(appService: AppService);
-    home(): {};
+  private readonly appService;
+  constructor(appService: AppService);
+  home(): {};
 }
