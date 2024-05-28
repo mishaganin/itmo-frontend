@@ -9,8 +9,8 @@ export class XmlInterceptor implements NestInterceptor {
     const request = ctx.getRequest();
     const response = ctx.getResponse();
 
-    const contentType = request.headers['content-type'];
-    if (!contentType || !contentType.includes('application/xml')) {
+    const acceptValue = request.headers['accept'];
+    if (!acceptValue || !acceptValue.includes('application/xml')) {
       return next.handle();
     }
 
